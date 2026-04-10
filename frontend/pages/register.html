@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="contenedor-principal">
+
+    <main class="tarjeta-acceso">
+        <h1 class="tarjeta-acceso__titulo">Registro</h1>
+        
+        <form class="formulario-registro" action="#" method="POST">
+            
+            <div class="formulario-registro__campo">
+                <input type="text" class="formulario-registro__entrada" placeholder="Nombre" required>
+            </div>
+
+            <div class="formulario-registro__campo">
+                <input type="text" class="formulario-registro__entrada" placeholder="Apellidos" required>
+            </div>
+
+            <div class="formulario-registro__campo">
+                <select class="formulario-registro__entrada formulario-registro__entrada--lista">
+                    <option value="" disabled selected>Centro</option>
+                    <option value="1">IES Ribera del Tajo</option>
+                    <option value="2">IES Puerta de Cuartos</option>
+                </select>
+            </div>
+
+            <div class="formulario-registro__campo">
+                <input type="email" class="formulario-registro__entrada" placeholder="Email" required>
+            </div>
+
+            <div class="formulario-registro__campo">
+                <input type="password" class="formulario-registro__entrada" placeholder="Contraseña" required>
+                <small class="formulario-registro__ayuda">8-16 caracteres, mayúsculas, minúsculas, números y símbolos.</small>
+            </div>
+
+            <div class="formulario-registro__campo">
+                <div class="formulario-registro__contenedor-password">
+                    <input type="password" class="formulario-registro__entrada" placeholder="Repetir Contraseña" required>
+                <!--<span class="formulario-registro__icono-ojo">👁️</span> -->                
+                </div>
+                <small class="formulario-registro__ayuda">8-16 caracteres, mayúsculas, minúsculas, números y símbolos.</small>
+            </div>
+
+            <button type="submit" class="formulario-registro__boton-enviar">Registro</button>
+            
+            <footer class="formulario-registro__pie">
+                <p>Si ya te has registrado anteriormente <a href="#" class="formulario-registro__enlace">Login</a></p>
+            </footer>
+
+        </form>
+    </main>
+
+</body>
+</html>
