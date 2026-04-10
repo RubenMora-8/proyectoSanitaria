@@ -1,0 +1,3 @@
+*.pdf
+backend/.env
+*/node_modules
