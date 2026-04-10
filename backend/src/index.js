@@ -2,7 +2,7 @@ const bodyParser = require("body-parser")
 const express = require("express");
 const app = express();
 require('dotenv').config();
-require("./database/associations.js");
+// require("./database/associations.js");
 
 const router = require("./routes/index.js");
 const sequelize = require("./database/conection.js");
