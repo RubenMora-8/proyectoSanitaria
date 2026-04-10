@@ -1,0 +1,244 @@
+:root {
+  --title-color: #86b2de;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px;
+}
+
+body {
+  margin: 0;
+}
+
+.accordion-button {
+  color: var(--title-color);
+}
+
+
+.subir {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  height: 60px;
+  width: 60px;
+}
+
+.container {
+  max-width: 1200px;
+  min-width: 600px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Visor */
+.visor {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: url("../assets/images/laboratorio2.jpg") no-repeat;
+  background-size: cover;
+  margin: 0px auto 0rem;
+  height: 400px;
+  width: 100%;
+}
+
+.visor__content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 6rem;
+  align-items: center;
+  color: #020342;
+  width: 700px;
+
+}
+
+.visor__title {
+  font-variant: small-caps;
+  font-size: 2rem;
+  letter-spacing: 0.07rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  background-color: #0e51b528;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+
+.visor__text {
+  text-align: center;
+  color: #011e15d0;
+  margin-top: 2rem;
+}
+
+/* .visor__btn {
+  font-variant: small-caps;
+  border-radius: 0.2rem;
+  border: 0.1rem solid #6f55aa;
+  background: #6f55aac5;
+  color: #f0fdfa;
+  cursor: pointer;
+  letter-spacing: 0.02rem;
+  padding: 0.5rem 2rem;
+  transition: letter-spacing 0.25s;
+}
+
+.visor__btn:hover {
+  letter-spacing: 0.2rem;
+} */
+
+/* Materias */
+
+.container__title {
+  text-align: center;
+  margin-top: 0rem;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: var(--title-color);
+}
+.subject-container {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+
+
+.subject__title-header {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  color: var(--title-color);
+  margin-bottom: 1.5rem;
+  font-variant: small-caps;
+}
+
+
+.subject-container__img {
+  width: 550px;
+}
+
+.subject__header {
+  margin-top: 1rem;
+}
+
+.subject__text {
+  text-align: left;
+  color: red;
+}
+
+.subject-container__content {
+  width: 100%;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.videosautopsia {
+  display: flex;
+  border:1px solid rgb(227, 226, 226);
+  border-radius: 0.25rem;
+  padding: 1rem;
+}
+
+.containermini {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  
+}
+
+.miniatura {
+  width: 200px;
+  height: 100px;
+
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.miniatura:hover {
+  transform: scale(1.05);
+}
+
+.video{
+  border-radius: 0.25rem;;
+}
+.container-video{
+  width: 800px;
+  display:flex;
+  justify-content: center;
+
+
+}
+
+.margin {
+  margin: 0;
+  padding: 0;
+}
+
+.subjects {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.subject {
+  width: 225px;
+  padding: 1rem 0;
+  text-align: center;
+  border: 0.1rem solid rgba(68, 68, 68, 0.132);
+
+  cursor: pointer;
+  color: #444;
+  border-radius: 0.15rem;
+  box-shadow: 1px 0 10px #80bfcf;
+  transition: transform 0.25s;
+}
+
+.subject:hover {
+  transform: scale(1.025);
+}
+
+.subject__img {
+  height: 75px;
+  margin-top: 0.7rem;
+}
+
+.subject__title {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.subject__text {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+@media (max-width: 850px) {
+  .footer__menu {
+    display: none;
+  }
+
+  .financiado__europa-pie {
+    width: 200px;
+  }
+
+  .financiado__generation-pie {
+    width: 200px;
+  }
+}

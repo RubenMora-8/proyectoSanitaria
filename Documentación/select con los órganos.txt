@@ -1,0 +1,65 @@
+  <select class="form-select blue__color p-2" id="organos" aria-label="Floating label select example">
+          <option disabled selected>Seleccionar un Órgano</option>
+          <option value="*">Todos</option>
+          <optgroup label="Sistema Nervioso">
+            <option>Encéfalo</option>
+            <option>Médula Espinal</option>
+            <option>Nervio</option>
+            <option>Ganglio Nervios</option>
+          </optgroup>
+
+          <optgroup label="Tegumento">
+            <option>Piel</option>
+            <option>Uña</option>
+            <option>Pelo</option>
+          </optgroup>
+
+          <optgroup label="Cardiovascular">
+            <option>Corazón</option>
+            <option>Venas</option>
+            <option>Arteria</option>
+          </optgroup>
+
+          <optgroup label="Linfático">
+            <option>Ganglio Linfático</option>
+            <option>Timo</option>
+            <option>Bazo</option>
+          </optgroup>
+
+          <optgroup label="Sistema Digestivo">
+            <option>Lengua</option>
+            <option>Esófago</option>
+            <option>Estómago</option>
+            <option>Intestino Delgado</option>
+            <option>Intestino Grueso</option>
+            <option>Diente</option>
+            <option>Glándula Salivar</option>
+            <option>Páncrea</option>
+            <option>Hígado</option>
+          </optgroup>
+
+          <optgroup label="Aparato Excretor">
+            <option>Riñón</option>
+            <option>Vejiga</option>
+          </optgroup>
+
+          <optgroup label="Respiratorio">
+            <option>Tránquea</option>
+            <option>Bronquios</option>
+            <option>Tejido Respiratorio</option>
+          </optgroup>
+
+          <optgroup label="Endocrino">
+            <option>Tiroides</option>
+            <option>Parótidas</option>
+            <option>Suprarrenales</option>
+            <option>Ovario</option>
+            <option>Testículo</option>
+          </optgroup>
+
+          <optgroup label="Locomotor">
+            <option>Hueso</option>
+            <option>Musculo Esquelético</option>
+          </optgroup>
+          <option>Otros</option>
+        </select>

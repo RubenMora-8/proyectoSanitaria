@@ -1,0 +1,42 @@
+# Ver las ramas locales
+git branch
+
+# Crear una nueva rama localmente sin cambiarte a ella
+git branch nombre-de-la-rama
+
+# Cambiar de rama
+git checkout nombre-de-la-rama
+
+# Crear una nueva rama localmente y cambiarte a ella
+git checkout -b nombre-de-la-rama
+
+# Crear una nueva rama en el repositorio remoto (GitHub). Tiene que existir en el repositorio local.
+git push --set-upstream origin nombre-de-la-rama
+
+# Ver las ramas remotas
+git branch -r
+
+# Ver todas las ramas (locales y remotas)
+git branch -a
+
+# Empujar la nueva rama al repositorio remoto (GitHub) sin cambiarte a ella
+git push origin nombre-de-la-rama
+
+# Borrar una rama localmente
+git branch -d nombre-de-la-rama
+
+# Si la rama tiene contenido y queremos borrar, sin haber hecho merge
+git branch -D nombre-de-la-rama
+
+# Borrar una rama en el repositorio remoto (GitHub)
+git push origin --delete nombre-de-la-rama
+
+# Cambiar el nombre de una rama localmente
+git branch -m nombre-antiguo nombre-nuevo
+
+# Actualizar el nombre de la rama en el repositorio remoto (GitHub)
+git push origin :nombre-antiguo nombre-nuevo
+git push origin -u nombre-nuevo
+
+# Fusionar la rama origen en la rama destino
+git merge nombre-de-la-rama-origen
