@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login de Acceso</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="shortcut icon" href="../assets/images/LogoRiberaNuevo.png" type="image/x-icon">
+</head>
+<body class="contenedor-principal">
+    <main class="tarjeta-acceso">
+    <h1 class="tarjeta-acceso__titulo">Login</h1>
+    
+    <form class="formulario-acceso">
+        <div class="formulario-acceso__campo">
+            <input type="email" class="formulario-acceso__entrada" placeholder="Correo" required>
+        </div>
+
+        <div class="formulario-acceso__campo">
+            <div class="formulario-acceso__contenedor-password">
+                <input type="password" class="formulario-acceso__entrada" placeholder="Contraseña" required>
+            </div>
+            <small class="formulario-acceso__ayuda">8-16 caracteres, mayúsculas, minúsculas, números y símbolos.</small>
+        </div>
+
+        <a href="#" class="formulario-acceso__recuperar">Olvidaste tu contraseña...</a>
+
+        <button type="submit" class="formulario-acceso__boton-enviar">Login</button>
+        
+        <footer class="formulario-acceso__pie">
+            <p>Si no tienes cuenta... <a href="./register.html" class="formulario-acceso__enlace">Registro</a></p>
+        </footer>
+    </form>
+</main>
+</body>
+</html>
