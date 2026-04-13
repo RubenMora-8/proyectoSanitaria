@@ -87,6 +87,21 @@ Tecnico.init(
                     msg: "El campo centro está vacío"
                 }
             }
+        },
+        tipo: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                isNumeric: {
+                    msg: "El campo tipo debe ser un valor numérico"
+                },
+                notNull: {
+                    msg: "El tipo es un campo obligatorio"
+                },
+                notEmpty: {
+                    msg: "El campo tipo está vacío"
+                }
+            }
         }
     },
     {
