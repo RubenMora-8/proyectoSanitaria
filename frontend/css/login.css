@@ -133,3 +133,8 @@
     color: var(--texto-suave);
     text-decoration: none;
 }
+
+/* Clase de utilidad para intercambiar formularios */
+.tarjeta-acceso__contenido--oculto {
+    display: none;
+}
