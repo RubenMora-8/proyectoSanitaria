@@ -1,6 +1,6 @@
 :root {
     --azul-principal: #679bc3;
-    --azul-claro: #b5d1e8;
+    --azul-claro: #a9c9e2;
     --texto-suave: #5a8fb9;
     --blanco: #ffffff;
 }
@@ -19,11 +19,16 @@
     border-bottom: 1px solid var(--azul-principal);
 }
 
+.barra-herramientas .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+
 .barra-herramientas__contenedor {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 /* Estilo común para todos los elementos de la barra */
@@ -32,24 +37,33 @@
 .barra-herramientas__entrada {
     background-color: var(--blanco);
     border: 1px solid var(--azul-principal);
-    color: #444; /* Un gris oscuro para que se lea bien el texto */
+    color: var(--texto-suave);
     padding: 6px 12px;
     border-radius: 4px;
     font-size: 0.9rem;
     outline: none;
 }
 
+.barra-herramientas__selector:focus,
+.barra-herramientas__boton:focus,
+.barra-herramientas__entrada:focus {
+    color: var(--texto-suave);
+    border-color: var(--azul-principal);
+    box-shadow: 0 0 0 0.15rem rgba(103, 155, 195, 0.2);
+}
+
+.barra-herramientas__entrada::placeholder {
+    color: var(--texto-suave);
+    opacity: 1;
+}
+
 /* Selector básico (usará la flecha por defecto del sistema) */
 .barra-herramientas__selector {
-    flex: 1;
-    max-width: 250px;
     cursor: pointer;
 }
 
 /* Botón central */
 .barra-herramientas__boton {
-    flex: 2;
-    max-width: 400px;
     cursor: pointer;
     font-weight: 500;
 }
@@ -61,10 +75,24 @@
 /* Grupo de fechas a la derecha */
 .barra-herramientas__grupo-fechas {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .barra-herramientas__entrada {
     width: 110px;
     text-align: center;
+}
+
+.aplicacion {
+    background-color: #f4f7f9;
+    min-height: calc(100vh - 72px);
+}
+
+.aplicacion .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.texto-suave {
+    color: var(--texto-suave);
 }
