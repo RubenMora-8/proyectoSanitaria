@@ -72,7 +72,7 @@ Cassete.init(
                 }
             }
         },
-        órgano: {
+        organo: {
             type: DataTypes.STRING(50),
             allowNull: false,
             validate: {
