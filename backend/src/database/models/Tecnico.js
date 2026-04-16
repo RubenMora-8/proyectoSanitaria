@@ -65,7 +65,7 @@ Tecnico.init(
             }
         },
         password: {
-            type: DataTypes.STRING(100),
+            type: DataTypes.STRING(255),
             allowNull: false,
             validate: {
                 notNull: {
@@ -91,6 +91,7 @@ Tecnico.init(
         tipo: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            defaultValue: 0,
             validate: {
                 isNumeric: {
                     msg: "El campo tipo debe ser un valor numérico"
