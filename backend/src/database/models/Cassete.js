@@ -87,6 +87,10 @@ Cassete.init(
                     msg: "El tamaño del campo órgano no puede superar 50 caracteres"
                 }
             }
+        },
+        id_tec: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     },
     {
