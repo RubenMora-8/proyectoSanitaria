@@ -76,6 +76,10 @@ Muestra.init(
                     msg: "El tamaño del campo QR no puede superar 50 caracteres"
                 }
             }
+        },
+        id_cas: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     },
     {

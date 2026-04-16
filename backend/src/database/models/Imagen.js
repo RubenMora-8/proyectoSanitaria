@@ -25,6 +25,10 @@ Imagen.init(
                     msg: "El tamaño del campo Imagen no puede superar 700 caracteres"
                 }
             }
+        },
+        id_muestra: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     },
     {
