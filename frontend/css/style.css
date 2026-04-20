@@ -1,10 +1,3 @@
-:root {
-    --azul-principal: #679bc3;
-    --azul-claro: #a9c9e2;
-    --texto-suave: #5a8fb9;
-    --blanco: #ffffff;
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,9 +7,9 @@
 
 /* Barra superior con tu azul claro de fondo */
 .barra-herramientas {
-    background-color: var(--azul-claro);
+    background-color: #a9c9e2;
     padding: 10px 20px;
-    border-bottom: 1px solid var(--azul-principal);
+    border-bottom: 1px solid #679bc3;
 }
 
 .barra-herramientas .container-fluid {
@@ -35,9 +28,9 @@
 .barra-herramientas__selector,
 .barra-herramientas__boton,
 .barra-herramientas__entrada {
-    background-color: var(--blanco);
-    border: 1px solid var(--azul-principal);
-    color: var(--texto-suave);
+    background-color: #ffffff;
+    border: 1px solid #679bc3;
+    color: #5a8fb9;
     padding: 6px 12px;
     border-radius: 4px;
     font-size: 0.9rem;
@@ -47,13 +40,13 @@
 .barra-herramientas__selector:focus,
 .barra-herramientas__boton:focus,
 .barra-herramientas__entrada:focus {
-    color: var(--texto-suave);
-    border-color: var(--azul-principal);
+    color: #5a8fb9;
+    border-color: #679bc3;
     box-shadow: 0 0 0 0.15rem rgba(103, 155, 195, 0.2);
 }
 
 .barra-herramientas__entrada::placeholder {
-    color: var(--texto-suave);
+    color: #5a8fb9;
     opacity: 1;
 }
 
@@ -94,5 +87,5 @@
 }
 
 .texto-suave {
-    color: var(--texto-suave);
+    color: #5a8fb9;
 }
