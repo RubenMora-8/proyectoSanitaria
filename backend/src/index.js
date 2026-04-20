@@ -34,7 +34,7 @@ const PORT = process.env.APP_PORT || 3000;
 
 app.listen(PORT, () => {
     console.log("Servidor funcionando en el puerto: " + PORT);
-    sequelize.sync({force: true})
+    sequelize.sync({force: false})
     .then(() => console.log("tablas sincronizadas"))
     .catch(error => console.log(error));
 });
