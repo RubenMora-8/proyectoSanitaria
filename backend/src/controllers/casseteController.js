@@ -24,7 +24,7 @@ const createCassete = async (req, res) => {
 
     if (!cassete.fecha || !cassete.observaciones ||
         !cassete.descripcion || !cassete.caracteristicas ||
-        !cassete.qr_cassete || !cassete.organo) {
+        !cassete.qr_cassete || !cassete.organo || !cassete.id_tec) {
 
         return res.status(400).json({
             error: "Falta alguno de los campos requeridos"

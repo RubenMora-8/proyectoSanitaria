@@ -6,7 +6,7 @@ const getAllCassetes = async () => {
 }
 
 const createCassete = async (cassete) => {
-    const createdCassete = await casseteModel.create({ fecha: cassete.fecha, observaciones: cassete.observaciones, descripcion: cassete.descripcion, caracteristicas: cassete.caracteristicas, qr_cassete: cassete.qr_cassete, organo: cassete.organo });
+    const createdCassete = await casseteModel.create({ fecha: cassete.fecha, observaciones: cassete.observaciones, descripcion: cassete.descripcion, caracteristicas: cassete.caracteristicas, qr_cassete: cassete.qr_cassete, organo: cassete.organo , id_tec: cassete.id_tec });
     return createdCassete;
 }
 module.exports = {

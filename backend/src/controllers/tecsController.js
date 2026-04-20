@@ -51,7 +51,7 @@ const registerTec = async (req, res) => {
     }
 }
 
-const findTecMail = async (req, res) => {
+const loginTec = async (req, res) => {
     const user = req.body;
 
     if (!user.email || !user.password) {
@@ -93,5 +93,5 @@ const findTecMail = async (req, res) => {
 module.exports = {
     getAllTecs,
     registerTec,
-    findTecMail
+    loginTec
 }
