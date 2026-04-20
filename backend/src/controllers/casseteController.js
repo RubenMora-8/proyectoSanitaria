@@ -53,7 +53,41 @@ const createCassete = async (req, res) => {
     }
 }
 
+const deleteCassete = async (req, res) => {
+
+
+    if (!req.params.id_cas) {
+
+        return res.status(400).json({
+            error: "Falta el id del cassete"
+        });
+    }
+
+    try {
+        const id_cassete = req.params.id_cas;
+        const deletedCassete = await casseteService.deleteCassete(id_cassete);
+
+        if (!deletedCassete) {
+            return res.status(500).json({
+                error: "Error en la base de datos",
+                msg: "No se ha encontrado el cassete"
+            });
+        }
+
+        res.status(200).json({
+            message: "Cassete borrado correctamente",
+            data: id_cassete
+        });
+    } catch (error) {
+        res.status(500).json({
+            error: "Error en la base de datos",
+            errores: [error.message]
+        });
+    }
+}
+
 module.exports = {
     getAllCassetes,
-    createCassete
+    createCassete,
+    deleteCassete
 }
