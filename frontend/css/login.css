@@ -75,14 +75,36 @@
     position: relative;
 }
 
-.formulario-acceso__icono-ojo {
+.formulario-acceso__contenedor-password .formulario-acceso__entrada {
+    padding-right: 48px;
+}
+
+.formulario-acceso__toggle-password {
     position: absolute;
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    padding: 0;
     cursor: pointer;
+    line-height: 1;
+}
+
+.formulario-acceso__icono-ojo {
     opacity: 0.4;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    transition: opacity 0.2s ease;
+}
+
+.formulario-acceso__toggle-password:hover .formulario-acceso__icono-ojo,
+.formulario-acceso__toggle-password:focus-visible .formulario-acceso__icono-ojo {
+    opacity: 0.8;
+}
+
+.formulario-acceso__toggle-password:focus-visible {
+    outline: 2px solid var(--azul-principal);
+    outline-offset: 3px;
 }
 
 .formulario-acceso__ayuda {

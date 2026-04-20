@@ -37,14 +37,29 @@
             </div>
 
             <div class="formulario-acceso__campo">
-                <input type="password" class="formulario-acceso__entrada" placeholder="Contraseña" required>
+                <input
+                    type="password"
+                    class="formulario-acceso__entrada"
+                    placeholder="Contraseña"
+                    required
+                    data-password-group="registro"
+                >
                 <small class="formulario-acceso__ayuda">8-16 caracteres, mayúsculas, minúsculas, números y símbolos.</small>
             </div>
 
             <div class="formulario-acceso__campo">
                 <div class="formulario-acceso__contenedor-password">
-                    <input type="password" class="formulario-acceso__entrada" placeholder="Repetir Contraseña" required>
-                    </div>
+                    <input
+                        type="password"
+                        class="formulario-acceso__entrada"
+                        placeholder="Repetir Contraseña"
+                        required
+                        data-password-group="registro"
+                    >
+                    <button type="button" class="formulario-acceso__toggle-password" aria-label="Mostrar contraseñas" data-password-target='registro'>
+                        <span class="formulario-acceso__icono-ojo" aria-hidden="true">👁</span>
+                    </button>
+                </div>
                 <small class="formulario-acceso__ayuda">8-16 caracteres, mayúsculas, minúsculas, números y símbolos.</small>
             </div>
 
@@ -57,5 +72,6 @@
         </form>
     </main>
 
+    <script src="./js/script.js"></script>
 </body>
 </html>
