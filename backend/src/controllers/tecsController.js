@@ -1,5 +1,7 @@
 const tecsService = require("../services/tecsService.js");
 const bcrypt = require("bcrypt");
+const authService = require("../services/authService.js");
+
 
 const getAllTecs = async (req, res) => {
     const tecs = await tecsService.getAllTecs();
@@ -73,8 +75,11 @@ const findTecMail = async (req, res) => {
         });
     }
 
+    const token = authService.generateToken(loggedTec);
+
     res.status(200).json({
         message: "Usuario logeado correctamente",
+        token: token,
         user: {
             nombre: loggedTec.nombre,
             apellidos: loggedTec.apellidos,
