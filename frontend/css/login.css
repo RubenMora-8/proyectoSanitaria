@@ -1,10 +1,3 @@
-:root {
-    --azul-principal: #679bc3;
-    --azul-claro: #b5d1e8;
-    --texto-suave: #5a8fb9;
-    --blanco: #ffffff;
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -23,7 +16,7 @@
 
 /* Bloque: Tarjeta */
 .tarjeta-acceso {
-    background: var(--blanco);
+    background: #ffffff;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
@@ -33,7 +26,7 @@
 }
 
 .tarjeta-acceso__titulo {
-    color: var(--azul-principal);
+    color: #679bc3;
     text-align: center;
     font-size: 2.2rem;
     margin-bottom: 30px;
@@ -48,7 +41,7 @@
 .formulario-acceso__entrada {
     width: 100%;
     padding: 12px 15px;
-    border: 1.5px solid var(--azul-claro);
+    border: 1.5px solid #b5d1e8;
     border-radius: 6px;
     font-size: 1rem;
     color: #444;
@@ -57,17 +50,17 @@
 }
 
 .formulario-acceso__entrada::placeholder {
-    color: var(--azul-claro);
+    color: #b5d1e8;
 }
 
 .formulario-acceso__entrada:focus {
-    border-color: var(--azul-principal);
-    border-bottom: 2px solid var(--azul-principal);
+    border-color: #679bc3;
+    border-bottom: 2px solid #679bc3;
 }
 
 .formulario-acceso__entrada--lista {
-    color: var(--texto-suave);
-    background-color: var(--blanco);
+    color: #5a8fb9;
+    background-color: #ffffff;
     cursor: pointer;
 }
 
@@ -103,23 +96,31 @@
 }
 
 .formulario-acceso__toggle-password:focus-visible {
-    outline: 2px solid var(--azul-principal);
+    outline: 2px solid #679bc3;
     outline-offset: 3px;
 }
 
 .formulario-acceso__ayuda {
     display: block;
-    color: var(--texto-suave);
+    color: #5a8fb9;
     font-size: 0.75rem;
     text-align: right;
     margin-top: 5px;
     line-height: 1.2;
 }
 
+.formulario-acceso__ayuda--error {
+    color: #b42318;
+}
+
+.formulario-acceso__ayuda--ok {
+    color: #027a48;
+}
+
 .formulario-acceso__boton-enviar {
     width: 100%;
-    background-color: var(--azul-principal);
-    color: var(--blanco);
+    background-color: #679bc3;
+    color: #ffffff;
     border: none;
     padding: 14px;
     border-radius: 6px;
@@ -134,11 +135,17 @@
     margin-top: 25px;
     text-align: center;
     font-size: 0.9rem;
-    color: var(--texto-suave);
+    color: #5a8fb9;
+}
+
+.formulario-acceso__pie-bloque {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 .formulario-acceso__enlace {
-    color: var(--azul-principal);
+    color: #679bc3;
     text-decoration: none;
     font-weight: 600;
 }
@@ -150,9 +157,8 @@
 .formulario-acceso__recuperar {
     display: block;
     text-align: center;
-    margin-bottom: 15px;
     font-size: 0.85rem;
-    color: var(--texto-suave);
+    color: #5a8fb9;
     text-decoration: none;
 }
 

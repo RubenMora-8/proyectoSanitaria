@@ -9,7 +9,6 @@
 </head>
 <body class="contenedor-principal">
     <main class="tarjeta-acceso">
-        
         <section id="seccion-login" class="tarjeta-acceso__contenido">
             <h1 class="tarjeta-acceso__titulo">Login</h1>
             <form class="formulario-acceso">
@@ -23,10 +22,7 @@
                             <span class="formulario-acceso__icono-ojo" aria-hidden="true">👁</span>
                         </button>
                     </div>
-                    <span class="formulario-acceso__ayuda">8-16 caracteres, mayúsculas, minúsculas...</span>
                 </div>
-
-                <a href="#" id="abrir-recuperar" class="formulario-acceso__recuperar">Olvidaste tu contraseña...</a>
 
                 <button type="submit" class="formulario-acceso__boton-enviar">Login</button>
                 <div class="formulario-acceso__pie">
@@ -48,7 +44,17 @@
             </form>
         </section>
 
+        <footer class="formulario-acceso__pie">
+            <div id="footer-login" class="formulario-acceso__pie-bloque">
+            <p>Si no tienes cuenta... <a href="./register.html" class="formulario-acceso__enlace">Registro</a></p>
+            <a href="#" id="abrir-recuperar" class="formulario-acceso__recuperar">Olvidaste tu contraseña...</a>
+            </div>
+            <div id="footer-recuperar" class="formulario-acceso__pie-bloque tarjeta-acceso__contenido--oculto">
+                <p>Volver a <a href="#" id="volver-login" class="formulario-acceso__enlace">Login</a></p>
+            </div>
+        </footer>
     </main>
+
     <script src="./js/script.js"></script>
 </body>
 </html>
