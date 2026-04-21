@@ -1,0 +1,142 @@
+.aplicacion {
+    background-color: #f4f7f9;
+}
+
+.aplicacion .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.texto-suave {
+    color: var(--texto-suave);
+}
+
+.barra-herramientas__entrada[type="date"] {
+    color: var(--azul-claro);
+    text-transform: uppercase; 
+    font-size: 0.85rem;
+    border: 1px solid var(--azul-principal);
+    padding: 6px 10px;
+    height: 38px;
+    cursor: pointer;
+    width: 140px;
+}
+
+
+.barra-herramientas__entrada:valid {
+    color: var(--texto-suave);
+}
+
+/*Cassetes*/
+/* Contenedor principal de la tarjeta de Casetes */
+.contenedor-casetes {
+    border: 1px solid var(--azul-claro);
+    overflow: hidden;
+}
+
+.contenedor-casetes__listado {
+    max-height: 400px; /* Ajusta según lo largo que quieras el listado */
+    overflow-y: auto;
+}
+
+/* Estilo de la tabla */
+.tabla-app {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.tabla-app thead {
+    background-color: #f8fafc;
+    position: sticky;
+    top: 0;
+}
+
+.tabla-app th {
+    color: var(--azul-principal);
+    font-weight: 500;
+    padding: 10px;
+    border-bottom: 2px solid var(--azul-claro);
+    text-transform: uppercase;
+}
+
+.tabla-app td {
+    padding: 10px;
+    color: var(--texto-suave);
+    border-bottom: 1px solid #edf2f7;
+}
+
+.tabla-app tr:nth-child(even) {
+    background-color: #fcfdfe;
+}
+
+/* Iconos y botones */
+.btn-icono, .btn-tabla {
+    background: none;
+    border: none;
+    color: var(--azul-principal);
+    cursor: pointer;
+    padding: 2px 5px;
+    font-size: 1.1rem;
+}
+
+.btn-icono:hover, .btn-tabla:hover {
+    transform: scale(1.1);
+    color: var(--texto-suave);
+}
+
+
+/* Detalles casetes */
+/* Contenedor principal de la tarjeta */
+.contenedor-detalle {
+    border: 1px solid var(--azul-claro) !important;
+}
+
+.contenedor-detalle__info {
+    padding: 25px;
+}
+
+/* Elementos de datos */
+.detalle-item {
+    margin-bottom: 18px;
+}
+
+.detalle-item__etiqueta {
+    color: var(--azul-principal);
+    font-weight: 700;
+    text-transform: uppercase; /* Pone DESCRIPCIÓN, ÓRGANO, etc en mayúsculas */
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+    letter-spacing: 0.5px;
+}
+
+.detalle-item__valor {
+    color: var(--azul-claro); /* El azul clarito de tus textos en la imagen */
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* Fila para Órgano y Fecha */
+.detalle-fila-mixta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #f0f4f8; /* Línea sutil debajo de Órgano/Fecha */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Línea divisoria central */
+.detalle-divisor {
+    border: 0;
+    border-top: 1px solid var(--azul-claro);
+    margin: 25px 0;
+    opacity: 0.4;
+}
+
+/* Iconos de la cabecera */
+.contenedor-detalle__acciones .btn-icono {
+    margin-left: 8px;
+    color: var(--azul-principal);
+    font-size: 1.2rem;
+}

@@ -1,3 +1,10 @@
+:root {
+    --azul-principal: #679bc3;
+    --azul-claro: #a9c9e2;
+    --texto-suave: #5a8fb9;
+    --blanco: #ffffff;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
