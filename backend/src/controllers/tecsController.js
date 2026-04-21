@@ -13,7 +13,7 @@ const registerTec = async (req, res) => {
 
     if (!user.nombre || !user.apellidos ||
         !user.email || !user.password ||
-        !user.centro || !user.tipo) {
+        !user.centro) {
 
         return res.status(400).json({
             error: "Falta alguno de los campos requeridos"
