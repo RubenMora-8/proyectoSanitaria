@@ -1,4 +1,3 @@
-const { where } = require("sequelize");
 const casseteModel = require("../database/models/Cassete");
 
 const getAllCassetes = async () => {

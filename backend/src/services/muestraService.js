@@ -14,9 +14,14 @@ const getMuestraId = async (idmuestra) => {
     const muestra = await muestraModel.findOne({ where: { id_muestra: idmuestra } });
     return muestra;
 }
+const deleteMuestra = async (idmuestra) => {
+    const muestra = await muestraModel.destroy({ where: { id_muestra: idmuestra } });
+    return muestra;
+}
 
 module.exports = {
     getAllMuestras,
     getMuestraId,
-    getAllMuestrasCassete
+    getAllMuestrasCassete,
+    deleteMuestra
 }
