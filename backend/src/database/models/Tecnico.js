@@ -92,6 +92,7 @@ Tecnico.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 0,
+            /*
             validate: {
                 isNumeric: {
                     msg: "El campo tipo debe ser un valor numérico"
@@ -103,6 +104,7 @@ Tecnico.init(
                     msg: "El campo tipo está vacío"
                 }
             }
+            */
         }
     },
     {
