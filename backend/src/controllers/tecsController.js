@@ -90,8 +90,29 @@ const loginTec = async (req, res) => {
     });
 }
 
+const deleteTec = async (req, res) => {
+    const id_tec = req.params.idtec;
+    try {
+        const deletedTec = await tecsService.deleteTec(id_tec);
+        if (!deletedTec) {
+            return res.status(404).json({
+                msg: "No se ha encontrado el técnico"
+            });
+        }
+        res.status(200).json({
+            msg: "Técnico eliminado con id: " + id_tec
+        });
+    } catch (error) {
+        res.status(500).json({
+            error: "Error en la base de datos",
+            errores: [error.message]
+        });
+    }
+}
+
 module.exports = {
     getAllTecs,
     registerTec,
-    loginTec
+    loginTec,
+    deleteTec
 }

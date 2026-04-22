@@ -9,6 +9,7 @@ tecsRouter.get("/" , tecsController.getAllTecs);
 
 tecsRouter.post("/login" , tecsController.loginTec);
 tecsRouter.post("/register" , tecsController.registerTec);
+tecsRouter.delete("/:id" , tecsController.deleteTec);
 
 // Rutas token
 

@@ -15,8 +15,14 @@ const findTecMail = async (userMail) => {
     return loggedTec;
 }
 
+const deleteTec = async (idtec) => {
+    const deletedTec = await tecModel.destroy({ where: { id_tec: idtec } });
+    return deletedTec;
+}
+
 module.exports = {
     getAllTecs,
     registerTec,
-    findTecMail
+    findTecMail,
+    deleteTec
 }
