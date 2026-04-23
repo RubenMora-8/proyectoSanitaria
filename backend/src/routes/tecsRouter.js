@@ -8,7 +8,7 @@ const authMiddleware = require("../middleware/authMiddleware.js");
 
 tecsRouter.post("/login" , tecsController.loginTec);
 tecsRouter.post("/register" , tecsController.registerTec);
-tecsRouter.delete("/:id" , tecsController.deleteTec);
+// tecsRouter.post(/"password-recovery" , tecsController.passwordrecoveryTec);
 
 // Rutas token
 
