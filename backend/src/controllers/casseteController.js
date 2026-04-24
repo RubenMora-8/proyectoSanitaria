@@ -2,22 +2,42 @@ const casseteService = require("../services/casseteService.js");
 
 const getAllCassetes = async (req, res) => {
     try {
-        const tecs = await casseteService.getAllCassetes();
+        let cassetes;
+        
+        if (req.user.tipo === 1) {
+            cassetes = await casseteService.getAllCassetes();
+        } 
+        else {
+            const idTec = req.user.id;
+            cassetes = await casseteService.getCassetesByTecnico(idTec);
+        }
+        
+        res.status(200).json(cassetes);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
-        if (tecs.length === 0) {
-            return res.status(404).json({
-                msg: "No se han encontrado cassetes"
+const getCasseteById = async (req, res) => {
+    try {
+        const id_cas = req.params.id_cas;
+        const cassete = await casseteService.getCasseteById(id_cas);
+        
+        if (!cassete) {
+            return res.status(404).json({ error: "Cassete no encontrado" });
+        }
+        
+        if (req.user.tipo !== 1 && cassete.id_tec !== req.user.id) {
+            return res.status(403).json({ 
+                error: "No tienes permiso para ver este cassete" 
             });
         }
-
-        res.status(200).json(tecs);
+        
+        res.status(200).json(cassete);
     } catch (error) {
-        res.status(500).json({
-            error: "Error en la base de datos",
-            errores: [error.message]
-        });
+        res.status(500).json({ error: error.message });
     }
-}
+};
 
 const createCassete = async (req, res) => {
     const cassete = req.body;
@@ -88,6 +108,7 @@ const deleteCassete = async (req, res) => {
 
 module.exports = {
     getAllCassetes,
+    getCasseteById,
     createCassete,
     deleteCassete
 }
