@@ -3,17 +3,18 @@ const casseteRouter = express.Router();
 const casseteController = require("../controllers/casseteController.js");
 const authMiddleware = require("../middleware/authMiddleware.js");
 
-casseteRouter.get("/" , casseteController.getAllCassetes);
-casseteRouter.post("/" , casseteController.createCassete);
-casseteRouter.delete("/:id_cas" , casseteController.deleteCassete);
-
 // Rutas publicas
-
-
 
 // Rutas token
 
+//Alumnos
 
+casseteRouter.get("/", authMiddleware.checkToken, casseteController.getAllCassetes);
+
+// Admin
+
+casseteRouter.post("/", authMiddleware.checkToken, authMiddleware.checkAdmin, casseteController.createCassete);
+casseteRouter.delete("/:id_cas", authMiddleware.checkToken, authMiddleware.checkAdmin, casseteController.deleteCassete);
 
 
 module.exports = casseteRouter;

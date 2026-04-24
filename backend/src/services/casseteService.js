@@ -5,6 +5,16 @@ const getAllCassetes = async () => {
     return allCassetes;
 }
 
+const getCassetesByTecnico = async (idTec) => {
+    return await casseteModel.findAll({ 
+        where: { id_tec: idTec } 
+    });
+};
+
+const getCasseteById = async (id_cas) => {
+    return await casseteModel.findByPk(id_cas);
+};
+
 const createCassete = async (cassete) => {
     const createdCassete = await casseteModel.create({
         fecha: cassete.fecha, observaciones: cassete.observaciones,
@@ -21,6 +31,8 @@ const deleteCassete = async (id_cassete) => {
 
 module.exports = {
     getAllCassetes,
+    getCassetesByTecnico,
+    getCasseteById,
     createCassete,
     deleteCassete
 }
