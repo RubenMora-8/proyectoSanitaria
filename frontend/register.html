@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +8,24 @@
     <link rel="stylesheet" href="./css/login.css">
     <link rel="shortcut icon" href="./assets/images/LogoRiberaNuevo.png" type="image/x-icon">
 </head>
+
 <body class="contenedor-principal">
 
     <main class="tarjeta-acceso">
         <h1 class="tarjeta-acceso__titulo">Registro</h1>
-        
-        <form class="formulario-acceso" action="#" method="POST">
-            
+
+        <form class="formulario-acceso" id="formularioRegistro">
+
             <div class="formulario-acceso__campo">
-                <input type="text" class="formulario-acceso__entrada" placeholder="Nombre" required>
+                <input name="nombre" type="text" class="formulario-acceso__entrada" placeholder="Nombre" required>
             </div>
 
             <div class="formulario-acceso__campo">
-                <input type="text" class="formulario-acceso__entrada" placeholder="Apellidos" required>
+                <input name="apellidos" type="text" class="formulario-acceso__entrada" placeholder="Apellidos" required>
             </div>
 
             <div class="formulario-acceso__campo">
-                <select class="formulario-acceso__entrada formulario-acceso__entrada--lista">
+                <select name="centro" class="formulario-acceso__entrada formulario-acceso__entrada--lista">
                     <option value="" disabled selected>Centro</option>
                     <option value="1">IES Ribera del Tajo</option>
                     <option value="2">IES Puerta de Cuartos</option>
@@ -33,42 +35,35 @@
             </div>
 
             <div class="formulario-acceso__campo">
-                <input type="email" class="formulario-acceso__entrada" placeholder="Email" required>
+                <input name="email" type="email" class="formulario-acceso__entrada" placeholder="Email" required>
             </div>
 
             <div class="formulario-acceso__campo">
-                <input
-                    type="password"
-                    class="formulario-acceso__entrada"
-                    placeholder="Contraseña"
-                    required
-                    data-password-group="registro"
-                    data-password-role="principal"
-                >
-                <small class="formulario-acceso__ayuda">8-16 caracteres, mayúsculas, minúsculas, números y símbolos.</small>
+                <input type="password" class="formulario-acceso__entrada" placeholder="Contraseña" required
+                    data-password-group="registro" data-password-role="principal">
+                <small class="formulario-acceso__ayuda">8-16 caracteres, mayúsculas, minúsculas, números y
+                    símbolos.</small>
             </div>
 
             <div class="formulario-acceso__campo">
                 <div class="formulario-acceso__contenedor-password">
-                    <input
-                        type="password"
-                        class="formulario-acceso__entrada"
-                        placeholder="Repetir Contraseña"
-                        required
-                        data-password-group="registro"
-                        data-password-role="confirmacion"
-                    >
-                    <button type="button" class="formulario-acceso__toggle-password" aria-label="Mostrar contraseñas" data-password-target='registro'>
+                    <input name="password" type="password" class="formulario-acceso__entrada"
+                        placeholder="Repetir Contraseña" required data-password-group="registro"
+                        data-password-role="confirmacion">
+                    <button type="button" class="formulario-acceso__toggle-password" aria-label="Mostrar contraseñas"
+                        data-password-target='registro'>
                         <span class="formulario-acceso__icono-ojo" aria-hidden="true">👁</span>
                     </button>
                 </div>
-                <small class="formulario-acceso__ayuda">8-16 caracteres, mayúsculas, minúsculas, números y símbolos.</small>
+                <small class="formulario-acceso__ayuda">8-16 caracteres, mayúsculas, minúsculas, números y
+                    símbolos.</small>
             </div>
 
             <button type="submit" class="formulario-acceso__boton-enviar">Registro</button>
-            
+
             <footer class="formulario-acceso__pie">
-                <p>Si ya te has registrado anteriormente <a href="./index.html" class="formulario-acceso__enlace">Login</a></p>
+                <p>Si ya te has registrado anteriormente <a href="./index.html"
+                        class="formulario-acceso__enlace">Login</a></p>
             </footer>
 
         </form>
@@ -76,4 +71,5 @@
 
     <script src="./js/script.js"></script>
 </body>
+
 </html>

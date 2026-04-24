@@ -67,7 +67,7 @@ botonesTogglePassword.forEach((boton) => {
     });
 });
 
-const formularioRegistro = document.querySelector('form.formulario-acceso');
+const formularioRegistro = document.getElementById('formularioRegistro');
 const passwordRegistro = document.querySelector('[data-password-role="principal"]');
 const passwordConfirmacion = document.querySelector('[data-password-role="confirmacion"]');
 
@@ -197,3 +197,25 @@ if (formularioRegistro && passwordRegistro && passwordConfirmacion) {
         }
     });
 }
+
+// Registro de usuario
+
+const registerUser = (event) => {
+    event.preventDefault();
+    const formData = new FormData(formularioRegistro);
+    const formJSON = Object.fromEntries(formData.entries());
+
+    console.log(formJSON);
+}
+
+const sendRegisterJson = async (userJson) => {
+    const res = await fetch("http://www.localhost:3000/api/tecs/register" ,{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userJson)
+    });
+}
+
+formularioRegistro.addEventListener("submit", registerUser)
