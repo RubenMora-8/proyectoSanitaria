@@ -198,26 +198,8 @@ if (formularioRegistro && passwordRegistro && passwordConfirmacion) {
     });
 }
 
-// Registro de usuario
+const infoMessage = document.getElementById("infoMessage");
 
-const registerUser = (event) => {
-    event.preventDefault();
-    const formData = new FormData(formularioRegistro);
-    const formJSON = Object.fromEntries(formData.entries());
-
-    sendRegisterJson(formJSON);
+const showMessage = (message) => {
+    infoMessage.textContent = message;
 }
-
-const sendRegisterJson = async (userJson) => {
-    const res = await fetch("http://www.localhost:3000/api/tecs/register" ,{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(userJson)
-    });
-    const resJSON = await res.json();
-    console.log(resJSON);
-}
-
-formularioRegistro.addEventListener("submit", registerUser)

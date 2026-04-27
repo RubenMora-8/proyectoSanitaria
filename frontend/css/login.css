@@ -166,3 +166,11 @@
 .tarjeta-acceso__contenido--oculto {
     display: none;
 }
+
+.infoMessage{
+    text-align: center;
+    color: #5a8fb9;
+    text-decoration: underline;
+    font-weight: bold;
+    margin-top: 10px;
+}
