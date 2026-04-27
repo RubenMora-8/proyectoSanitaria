@@ -3,7 +3,6 @@ const formularioLogin = document.getElementById('formularioLogin');
 const loginUser = (event) => {
     event.preventDefault();
 
-    console.log("login");
     const formData = new FormData(formularioLogin);
     const formJSON = Object.fromEntries(formData.entries());
 
@@ -19,9 +18,17 @@ const sendLoginJson = async (userJson) => {
         body: JSON.stringify(userJson)
     });
     const resJSON = await res.json();
-    console.log(resJSON);
+    console.log(resJSON.token);
 
-    showMessage(resJSON.error);
+    if (!resJSON.error) {
+        setCookie(resJSON.token);
+        window.
+    }
+}
+
+function setCookie(value) {
+    const maxAge = 60 * 60 * 24;
+    document.cookie = "tokenCookie=" + value + ";max-age=" + maxAge + ";path=/";
 }
 
 formularioLogin.addEventListener("submit", loginUser);
