@@ -110,19 +110,9 @@ const deleteTec = async (req, res) => {
     }
 }
 
-const passwordrecoveryTec = async (req, res) => {
-    if (!user.email) {
-        return res.status(400).json({
-            error: "Falta alguno de los campos requeridos"
-        });
-    }
-    
-}
-
 module.exports = {
     getAllTecs,
     registerTec,
     loginTec,
-    deleteTec,
-    passwordrecoveryTec
+    deleteTec
 }
