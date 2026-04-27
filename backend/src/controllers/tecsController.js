@@ -91,16 +91,16 @@ const loginTec = async (req, res) => {
 }
 
 const deleteTec = async (req, res) => {
-    const id_tec = req.params.idtec;
+    const id = req.params.id;
     try {
-        const deletedTec = await tecsService.deleteTec(id_tec);
+        const deletedTec = await tecsService.deleteTec(id);
         if (!deletedTec) {
             return res.status(404).json({
                 msg: "No se ha encontrado el técnico"
             });
         }
         res.status(200).json({
-            msg: "Técnico eliminado con id: " + id_tec
+            msg: "Técnico eliminado con id: " + id
         });
     } catch (error) {
         res.status(500).json({
@@ -110,9 +110,19 @@ const deleteTec = async (req, res) => {
     }
 }
 
+const passwordrecoveryTec = async (req, res) => {
+    if (!user.email) {
+        return res.status(400).json({
+            error: "Falta alguno de los campos requeridos"
+        });
+    }
+    
+}
+
 module.exports = {
     getAllTecs,
     registerTec,
     loginTec,
-    deleteTec
+    deleteTec,
+    passwordrecoveryTec
 }

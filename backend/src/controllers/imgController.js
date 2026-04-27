@@ -20,7 +20,7 @@ const getAllImgs = async (req, res) => {
 const getAllImgsMuestra = async (req, res) => {
     const id_muestra = req.params.id_muestra;
     try {
-        const imgs = await muestraService.getAllImgsMuestra(id_muestra);
+        const imgs = await imgsService.getAllImgsMuestra(id_muestra);
         if (imgs.length === 0) {
             return res.status(404).json({
                 msg: "No se han encontrado imágenes"

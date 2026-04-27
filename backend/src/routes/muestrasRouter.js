@@ -3,18 +3,19 @@ const muestrasRouter = express.Router();
 const muestraController = require("../controllers/muestraController.js");
 const authMiddleware = require("../middleware/authMiddleware.js");
 
-muestrasRouter.get("/", muestraController.getAllMuestras);
-muestrasRouter.get("/:id_cas", muestraController.getAllMuestrasCassete);
-muestrasRouter.get("/muestra/:id_muestra", muestraController.getMuestraId);
-muestrasRouter.delete("/:id_cas", muestraController.deleteMuestra);
-
 // Rutas publicas
-
-
 
 // Rutas token
 
+// Alumno
 
+muestrasRouter.get("/", authMiddleware.checkToken, muestraController.getAllMuestras);
+muestrasRouter.get("/:id_cas", authMiddleware.checkToken, muestraController.getAllMuestrasCassete);
+muestrasRouter.get("/muestra/:id_muestra", authMiddleware.checkToken, muestraController.getMuestraId);
+
+// Admin
+
+muestrasRouter.delete("/:id_muestra", authMiddleware.checkToken, authMiddleware.checkAdmin, muestraController.deleteMuestra);
 
 
 module.exports = muestrasRouter;

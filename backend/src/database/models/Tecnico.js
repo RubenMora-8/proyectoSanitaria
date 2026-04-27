@@ -21,8 +21,8 @@ Tecnico.init(
                     msg: "El nombre no puede ir vacío"
                 },
                 len: {
-                    args: [6, 100],
-                    msg: "El tamaño del nombre debe ser de entre 6 y 100 caracteres"
+                    args: [3, 100],
+                    msg: "El tamaño del nombre debe ser de entre 3 y 100 caracteres"
                 }
             }
         },
@@ -37,8 +37,8 @@ Tecnico.init(
                     msg: "El campo apellidos no puede ir vacío"
                 },
                 len: {
-                    args: [6, 100],
-                    msg: "El tamaño del campo apellidos debe ser de entre 6 y 100 caracteres"
+                    args: [3, 100],
+                    msg: "El tamaño del campo apellidos debe ser de entre 3 y 100 caracteres"
                 }
             }
         },
