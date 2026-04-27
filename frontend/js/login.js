@@ -22,7 +22,7 @@ const sendLoginJson = async (userJson) => {
 
     if (!resJSON.error) {
         setCookie(resJSON.token);
-        window.
+        window.location = "./pages/aplicacion.html";
     }
 }
 
