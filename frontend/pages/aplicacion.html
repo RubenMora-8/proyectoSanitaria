@@ -74,94 +74,56 @@
         <section class="row g-3 justify-content-center">
           <div class="col-12 col-md-6 col-xl-5">
             <div class="card shadow-sm h-100 contenedor-casetes">
-              <div
-                class="card-body d-flex justify-content-between align-items-center border-bottom py-2"
-              >
-                <div class="flex-grow-1 text-center">
-                  <h2 class="h5 mb-0 texto-suave">CASSETTES</h2>
+              <div class="contenedor-casetes__superior">
+                <div
+                  class="card-body d-flex justify-content-between align-items-center border-bottom py-2"
+                >
+                  <div class="flex-grow-1 text-center">
+                    <h2 class="h5 mb-0 texto-suave">CASSETTES</h2>
+                  </div>
+                  <div class="contenedor-casetes__acciones">
+                    <button
+                      id="botonNuevoCassette"
+                      class="btn-icono"
+                      title="Añadir"
+                      type="button"
+                    >
+                      <i class="fas fa-file-medical"></i>
+                    </button>
+                    <button class="btn-icono" title="Copiar">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                  </div>
                 </div>
-                <div class="contenedor-casetes__acciones">
-                  <button class="btn-icono" title="Añadir">
-                    <i class="fas fa-file-medical"></i>
+
+                <div class="contenedor-casetes__filtros">
+                  <button
+                    type="button"
+                    class="btn-tabla-orden"
+                    data-orden="fecha"
+                  >
+                    Fecha
                   </button>
-                  <button class="btn-icono" title="Copiar">
-                    <i class="fas fa-copy"></i>
+                  <button
+                    type="button"
+                    class="btn-tabla-orden"
+                    data-orden="descripcion"
+                  >
+                    Descripcion
+                  </button>
+                  <button
+                    type="button"
+                    class="btn-tabla-orden"
+                    data-orden="organo"
+                  >
+                    Organo
                   </button>
                 </div>
               </div>
 
               <div class="contenedor-casetes__listado">
                 <table class="tabla-app">
-                  <thead>
-                    <tr>
-                      <th>FECHA</th>
-                      <th>DESCRIPCIÓN</th>
-                      <th>ÓRGANO</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>21-04-2025</td>
-                      <td>prueba</td>
-                      <td>prueba</td>
-                      <td>
-                        <button class="btn-tabla">
-                          <i class="fas fa-file-alt"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>21-04-2025</td>
-                      <td>prueba</td>
-                      <td>prueba</td>
-                      <td>
-                        <button class="btn-tabla">
-                          <i class="fas fa-file-alt"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>21-04-2025</td>
-                      <td>prueba</td>
-                      <td>prueba</td>
-                      <td>
-                        <button class="btn-tabla">
-                          <i class="fas fa-file-alt"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>21-04-2025</td>
-                      <td>prueba</td>
-                      <td>prueba</td>
-                      <td>
-                        <button class="btn-tabla">
-                          <i class="fas fa-file-alt"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>21-04-2025</td>
-                      <td>prueba</td>
-                      <td>prueba</td>
-                      <td>
-                        <button class="btn-tabla">
-                          <i class="fas fa-file-alt"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>21-04-2025</td>
-                      <td>prueba</td>
-                      <td>prueba</td>
-                      <td>
-                        <button class="btn-tabla">
-                          <i class="fas fa-file-alt"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
+                  <tbody id="tablaCassettesBody"></tbody>
                 </table>
               </div>
             </div>
@@ -179,10 +141,20 @@
                   <button class="btn-icono" title="Código QR">
                     <i class="fas fa-qrcode"></i>
                   </button>
-                  <button class="btn-icono" title="Eliminar">
+                  <button
+                    class="btn-icono"
+                    title="Eliminar"
+                    type="button"
+                    id="botonEliminarCassette"
+                  >
                     <i class="fas fa-trash-alt"></i>
                   </button>
-                  <button class="btn-icono" title="Editar">
+                  <button
+                    class="btn-icono"
+                    title="Editar"
+                    type="button"
+                    id="botonEditarCassette"
+                  >
                     <i class="fas fa-file-signature"></i>
                   </button>
                 </div>
@@ -191,36 +163,30 @@
               <div class="card-body contenedor-detalle__info">
                 <div class="detalle-item">
                   <p class="detalle-item__etiqueta">Descripción:</p>
-                  <p class="detalle-item__valor">
-                    Muestra de tejido epitelial para análisis
-                  </p>
+                  <p class="detalle-item__valor" id="detalleDescripcion"></p>
                 </div>
 
                 <div class="detalle-fila-mixta">
                   <div class="detalle-item">
                     <p class="detalle-item__etiqueta">Órgano:</p>
-                    <p class="detalle-item__valor">Bazo</p>
+                    <p class="detalle-item__valor" id="detalleOrgano"></p>
                   </div>
                   <div class="detalle-item text-end">
                     <p class="detalle-item__etiqueta">Fecha:</p>
-                    <p class="detalle-item__valor">15-02-2025</p>
+                    <p class="detalle-item__valor" id="detalleFecha"></p>
                   </div>
                 </div>
 
                 <div class="detalle-item">
                   <p class="detalle-item__etiqueta">Características:</p>
-                  <p class="detalle-item__valor">
-                    Fijación en formol al 10%, tamaño 2x2cm
-                  </p>
+                  <p class="detalle-item__valor" id="detalleCaracteristicas"></p>
                 </div>
 
                 <hr class="detalle-divisor" />
 
                 <div class="detalle-item">
                   <p class="detalle-item__etiqueta">Observaciones:</p>
-                  <p class="detalle-item__valor">
-                    Procesar con protocolo estándar de histología
-                  </p>
+                  <p class="detalle-item__valor" id="detalleObservaciones"></p>
                 </div>
               </div>
             </div>
@@ -236,5 +202,183 @@
         </section>
       </div>
     </main>
+
+    <div
+      class="modal fade modal-cassette"
+      id="modalNuevoCassette"
+      tabindex="-1"
+      aria-labelledby="modalNuevoCassetteLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-cassette__contenido">
+          <div class="modal-header modal-cassette__cabecera">
+            <h2 class="modal-title h5 mb-0" id="modalNuevoCassetteLabel">
+              Nuevo cassette
+            </h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="modal-cassette__formulario" id="formNuevoCassette" novalidate>
+              <div class="mb-3">
+                <label
+                  class="form-label modal-cassette__label"
+                  for="descripcionCorta"
+                >
+                  Descripción corta
+                </label>
+                <input
+                  type="text"
+                  class="form-control modal-cassette__control"
+                  id="descripcionCorta"
+                  placeholder="Escribe una descripción breve"
+                  required
+                />
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6">
+                  <label
+                    class="form-label modal-cassette__label"
+                    for="fechaCassette"
+                  >
+                    Fecha
+                  </label>
+                  <input
+                    type="date"
+                    class="form-control modal-cassette__control"
+                    id="fechaCassette"
+                    required
+                  />
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <label
+                    class="form-label modal-cassette__label"
+                    for="organoCassette"
+                  >
+                    Órgano
+                  </label>
+                  <select
+                    class="form-select modal-cassette__control"
+                    id="organoCassette"
+                    required
+                  >
+                    <option value="" selected disabled>Selecciona un órgano</option>
+                    <option value="pulmon">Pulmón</option>
+                    <option value="rinon">Riñón</option>
+                    <option value="bazo">Bazo</option>
+                    <option value="higado">Hígado</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label
+                  class="form-label modal-cassette__label"
+                  for="caracteristicasCassette"
+                >
+                  Características
+                </label>
+                <textarea
+                  class="form-control modal-cassette__control modal-cassette__textarea"
+                  id="caracteristicasCassette"
+                  placeholder="Añade las características del cassette"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="mb-4">
+                <label
+                  class="form-label modal-cassette__label"
+                  for="observacionesCassette"
+                >
+                  Observaciones
+                </label>
+                <textarea
+                  class="form-control modal-cassette__control modal-cassette__textarea"
+                  id="observacionesCassette"
+                  placeholder="Añade observaciones adicionales"
+                  required
+                ></textarea>
+              </div>
+
+              <p
+                class="modal-cassette__mensaje-error d-none"
+                id="mensajeErrorCassette"
+                aria-live="polite"
+              >
+                Completa todos los campos antes de crear el cassette.
+              </p>
+
+              <button
+                type="submit"
+                class="btn w-100 modal-cassette__boton"
+                id="botonGuardarCassette"
+              >
+                Crear Cassette
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade modal-cassette"
+      id="modalEliminarCassette"
+      tabindex="-1"
+      aria-labelledby="modalEliminarCassetteLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-cassette__contenido">
+          <div class="modal-header modal-cassette__cabecera">
+            <h2 class="modal-title h5 mb-0" id="modalEliminarCassetteLabel">
+              Eliminar cassette
+            </h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p class="modal-cassette__texto mb-4" id="textoEliminarCassette">
+              ¿Quieres eliminar este cassette?
+            </p>
+            <div class="d-flex gap-3">
+              <button
+                type="button"
+                class="btn w-100 modal-cassette__boton modal-cassette__boton--secundario"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="btn w-100 modal-cassette__boton modal-cassette__boton--peligro"
+                id="confirmarEliminarCassette"
+              >
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/aplicacion.js"></script>
   </body>
 </html>

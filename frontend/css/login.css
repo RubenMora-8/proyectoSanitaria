@@ -109,6 +109,10 @@
     line-height: 1.2;
 }
 
+.formulario-acceso__ayuda--oculta {
+    display: none;
+}
+
 .formulario-acceso__ayuda--error {
     color: #b42318;
 }

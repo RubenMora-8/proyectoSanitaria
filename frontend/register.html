@@ -37,32 +37,19 @@
             </div>
 
             <div class="formulario-acceso__campo">
-                <input
-                    type="password"
-                    class="formulario-acceso__entrada"
-                    placeholder="Contraseña"
-                    required
-                    data-password-group="registro"
-                    data-password-role="principal"
-                >
-                <small class="formulario-acceso__ayuda">8-16 caracteres, mayúsculas, minúsculas, números y símbolos.</small>
-            </div>
-
-            <div class="formulario-acceso__campo">
                 <div class="formulario-acceso__contenedor-password">
                     <input
                         type="password"
                         class="formulario-acceso__entrada"
-                        placeholder="Repetir Contraseña"
+                        placeholder="Contraseña"
                         required
-                        data-password-group="registro"
-                        data-password-role="confirmacion"
+                        data-password-role="principal"
                     >
-                    <button type="button" class="formulario-acceso__toggle-password" aria-label="Mostrar contraseñas" data-password-target='registro'>
+                    <button type="button" class="formulario-acceso__toggle-password" aria-label="Mostrar contraseña" data-password-target="self">
                         <span class="formulario-acceso__icono-ojo" aria-hidden="true">👁</span>
                     </button>
                 </div>
-                <small class="formulario-acceso__ayuda">8-16 caracteres, mayúsculas, minúsculas, números y símbolos.</small>
+                <small class="formulario-acceso__ayuda formulario-acceso__ayuda--oculta"></small>
             </div>
 
             <button type="submit" class="formulario-acceso__boton-enviar">Registro</button>
