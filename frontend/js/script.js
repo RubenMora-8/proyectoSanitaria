@@ -216,6 +216,8 @@ const sendRegisterJson = async (userJson) => {
         },
         body: JSON.stringify(userJson)
     });
+    const resJSON = await res.json();
+    console.log(resJSON);
 }
 
 formularioRegistro.addEventListener("submit", registerUser)
