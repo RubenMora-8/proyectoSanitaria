@@ -5,8 +5,8 @@ const getAllImages = async () => {
     return allImages;
 }
 
-const getImageId = async (idimg) => {
-    const img = await imgModel.findOne({ where: { id_img: idimg } });
+const getImageId = async (id_img) => {
+    const img = await imgModel.findOne({ where: { id_img: id_img } });
     return img;
 }
 
@@ -15,8 +15,8 @@ const getAllImgsMuestra = async (idmuestra) => {
     return allImgs;
 }
 
-const deleteImg = async (idimg) => {
-    const img = await imgModel.destroy({ where: { id_muestra: idmuestra } });
+const deleteImg = async (id_img) => {
+    const img = await imgModel.destroy({ where: { id_img: id_img } });
     return img;
 }
 

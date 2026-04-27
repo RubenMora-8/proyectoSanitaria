@@ -22,15 +22,9 @@ const getAllMuestras = async (req, res) => {
 const getAllMuestrasCassete = async (req, res) => {
     try {
         const id_cas = req.params.id_cas;
-        const cassete = await casseteService.getCasseteById(id_cas);
         
-        if (req.user.tipo !== 1 && cassete?.id_tec !== req.user.id) {
-            return res.status(403).json({ 
-                error: "No tienes permiso para ver muestras de este cassete" 
-            });
-        }
+        const muestras = await muestraService.getAllMuestrasCassete(id_cas);
         
-        const muestras = await muestraService.getMuestrasByCassete(id_cas);
         res.status(200).json(muestras);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -41,7 +35,7 @@ const getMuestraId = async (req, res) => {
     const id_muestra = req.params.id_muestra;
 
     try {
-        const muestra = await muestraService.getAllMuestrasCassete(id_muestra);
+        const muestra = await muestraService.getMuestraId(id_muestra);
 
         if (!muestra) {
             return res.status(404).json({
