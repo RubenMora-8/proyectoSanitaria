@@ -205,7 +205,7 @@ const registerUser = (event) => {
     const formData = new FormData(formularioRegistro);
     const formJSON = Object.fromEntries(formData.entries());
 
-    console.log(formJSON);
+    sendRegisterJson(formJSON);
 }
 
 const sendRegisterJson = async (userJson) => {
