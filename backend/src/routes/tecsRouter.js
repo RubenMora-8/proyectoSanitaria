@@ -16,16 +16,19 @@ tecsRouter.get("/test-token", authMiddleware.checkToken, (req, res) => {
 
 // Rutas publicas
 
-tecsRouter.post("/login" , tecsController.loginTec);
-tecsRouter.post("/register" , tecsController.registerTec);
-tecsRouter.post("/password-recovery" , tecsController.passwordrecoveryTec);
-
 // Rutas token
 
-// Usuario
+tecsRouter.post("/login", tecsController.loginTec);
+tecsRouter.post("/register", tecsController.registerTec);
+tecsRouter.post("/password-recovery", tecsController.passwordrecoveryTec);
 
-// Admin
+// Rutas Admin
+
 tecsRouter.get("/", authMiddleware.checkToken, authMiddleware.checkAdmin, tecsController.getAllTecs);
-tecsRouter.delete("/:id" , authMiddleware.checkToken, authMiddleware.checkAdmin, tecsController.deleteTec);
+tecsRouter.get("/:id", authMiddleware.checkToken, authMiddleware.checkAdmin, tecsController.getUserById);
+tecsRouter.put("/:id", authMiddleware.checkToken, authMiddleware.checkAdmin, tecsController.updateUser);
+tecsRouter.put("/:id/password", authMiddleware.checkToken, authMiddleware.checkAdmin, tecsController.changeUserPassword);
+tecsRouter.put("/:id/update", authMiddleware.checkToken, authMiddleware.checkAdmin, tecsController.updateUserToAdmin);
+tecsRouter.delete("/:id", authMiddleware.checkToken, authMiddleware.checkAdmin, tecsController.deleteTec);
 
 module.exports = tecsRouter;

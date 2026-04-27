@@ -3,18 +3,17 @@ const imgsRouter = express.Router();
 const imgsController = require("../controllers/imgController.js");
 const authMiddleware = require("../middleware/authMiddleware.js");
 
+const upload = require("../middleware/multer.js");
+
 // Rutas publicas
 
 // Rutas token
 
-// ALumnos
+// ALumnos y Admin
 
 imgsRouter.get("/", authMiddleware.checkToken, imgsController.getAllImgs);
 imgsRouter.get("/:id_muestra", authMiddleware.checkToken, imgsController.getAllImgsMuestra);
 imgsRouter.get("/imagen/:id_img", authMiddleware.checkToken, imgsController.getImageId);
-
-// Admin
-
-imgsRouter.delete("/:id_img", authMiddleware.checkToken, authMiddleware.checkAdmin, imgsController.deleteImg);
+imgsRouter.delete("/:id_img", authMiddleware.checkToken, imgsController.deleteImg);
 
 module.exports = imgsRouter;
