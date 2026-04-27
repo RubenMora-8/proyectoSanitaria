@@ -1,4 +1,5 @@
 const formularioLogin = document.getElementById('formularioLogin');
+const formRecovery = document.getElementById("formRecovery");
 
 const loginUser = (event) => {
     event.preventDefault();
@@ -26,10 +27,17 @@ const sendLoginJson = async (userJson) => {
     }
 }
 
-function setCookie(value) {
+const setCookie = (value) => {
     const maxAge = 60 * 60 * 24;
     document.cookie = "tokenCookie=" + value + ";max-age=" + maxAge + ";path=/";
 }
 
+const passRecovery = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(formularioLogin);
+    
+
+}
+
 formularioLogin.addEventListener("submit", loginUser);
-botonLogin.addEventListener("click", () => { console.log("boton pulsado") });
+formRecovery.addEventListener("submit" , passRecovery)
