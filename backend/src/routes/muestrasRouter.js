@@ -7,15 +7,11 @@ const authMiddleware = require("../middleware/authMiddleware.js");
 
 // Rutas token
 
-// Alumno
+// Alumno y Admin
 
 muestrasRouter.get("/", authMiddleware.checkToken, muestraController.getAllMuestras);
 muestrasRouter.get("/:id_cas", authMiddleware.checkToken, muestraController.getAllMuestrasCassete);
 muestrasRouter.get("/muestra/:id_muestra", authMiddleware.checkToken, muestraController.getMuestraId);
-
-// Admin
-
-muestrasRouter.delete("/:id_muestra", authMiddleware.checkToken, authMiddleware.checkAdmin, muestraController.deleteMuestra);
-
+muestrasRouter.delete("/:id_muestra", authMiddleware.checkToken, muestraController.deleteMuestra);
 
 module.exports = muestrasRouter;

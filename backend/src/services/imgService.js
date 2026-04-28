@@ -20,6 +20,11 @@ const deleteImg = async (id_img) => {
     return img;
 }
 
+const createImage = async (data) => {
+    const newImage = await imgModel.create(data);
+    return newImage;
+}
+
 module.exports = {
     getAllImages,
     getImageId,

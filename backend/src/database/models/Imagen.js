@@ -11,19 +11,11 @@ Imagen.init(
             autoIncrement: true
         },
         imagen: {
-            type: DataTypes.STRING(700),
+            type: DataTypes.BLOB('long'),
             allowNull: false,
             validate: {
-                notNull: {
-                    msg: "La imagen es un campo obligatorio"
-                },
-                notEmpty: {
-                    msg: "El campo imagen no puede ir vacío"
-                },
-                len: {
-                    args: [0, 100],
-                    msg: "El tamaño del campo Imagen no puede superar 700 caracteres"
-                }
+                notNull: { msg: "La imagen es un campo obligatorio" },
+                notEmpty: { msg: "El campo imagen no puede ir vacío" }
             }
         },
         id_muestra: {
@@ -34,7 +26,7 @@ Imagen.init(
     {
         sequelize,
         tableName: "imagenes",
-        timestamps: false
+        timestamps: true
     }
 )
 

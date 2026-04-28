@@ -1,4 +1,5 @@
 const tecModel = require("../database/models/Tecnico");
+const bcrypt = require("bcrypt");
 
 const getAllTecs = async () => {
     const allTecs = await tecModel.findAll();
@@ -20,9 +21,41 @@ const deleteTec = async (idtec) => {
     return deletedTec;
 }
 
+// Obtener un técnico por ID
+const getTecById = async (idtec) => {
+    const tec = await tecModel.findByPk(idtec);
+    return tec;
+}
+
+const updateTec = async (idtec, datos) => {
+    await tecModel.update(datos, { where: { id_tec: idtec } });
+    return await tecModel.findByPk(idtec);
+}
+
+const changePassword = async (idtec, nuevaPassword) => {
+    const hashedPassword = await bcrypt.hash(nuevaPassword, 10);
+    await tecModel.update(
+        { password: hashedPassword },
+        { where: { id_tec: idtec } }
+    );
+    return await tecModel.findByPk(idtec);
+}
+
+const updateToAdmin = async (idtec) => {
+    await tecModel.update(
+        { tipo: 1 },
+        { where: { id_tec: idtec } }
+    );
+    return await tecModel.findByPk(idtec);
+}
+
 module.exports = {
     getAllTecs,
     registerTec,
     findTecMail,
-    deleteTec
+    deleteTec,
+    getTecById,
+    updateTec,
+    changePassword,
+    updateToAdmin
 }

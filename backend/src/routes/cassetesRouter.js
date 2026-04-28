@@ -7,14 +7,11 @@ const authMiddleware = require("../middleware/authMiddleware.js");
 
 // Rutas token
 
-//Alumnos
+//Alumnos y Admin
 
 casseteRouter.get("/", authMiddleware.checkToken, casseteController.getAllCassetes);
-
-// Admin
-
-casseteRouter.post("/", authMiddleware.checkToken, authMiddleware.checkAdmin, casseteController.createCassete);
-casseteRouter.delete("/:id_cas", authMiddleware.checkToken, authMiddleware.checkAdmin, casseteController.deleteCassete);
+casseteRouter.post("/", authMiddleware.checkToken, casseteController.createCassete);
+casseteRouter.delete("/:id_cas", authMiddleware.checkToken, casseteController.deleteCassete);
 
 
 module.exports = casseteRouter;
