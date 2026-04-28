@@ -442,7 +442,14 @@
 // ----------------------------------------------------------------------
 
 const formularioCassette = document.getElementById("formNuevoCassette");
-const tablaCassettesBody = document.getElementById("tablaCassettesBody")
+const tablaCassettesBody = document.getElementById("tablaCassettesBody");
+const detalleDescripcion = document.getElementById("detalleDescripcion");
+const detalleOrgano = document.getElementById("detalleOrgano");
+const detalleFecha = document.getElementById("detalleFecha");
+const detalleCaracteristicas = document.getElementById("detalleCaracteristicas");
+const detalleObservaciones = document.getElementById("detalleObservaciones");
+let arrayCassetes = [];
+let casseteActivo = null;
 
 const createCassete = async (event) => {
   event.preventDefault();
@@ -451,7 +458,7 @@ const createCassete = async (event) => {
   formData.append("qr_cassete", "QR pendiente");
   const formJSON = Object.fromEntries(formData.entries());
 
-  sendCasseteJson(formJSON);
+  createCasseteJson(formJSON);
 }
 
 function getCookieByName(name) {
@@ -465,7 +472,7 @@ function getCookieByName(name) {
   return null;
 }
 
-const sendCasseteJson = async (casJson) => {
+const createCasseteJson = async (casJson) => {
   const token = getCookieByName("tokenCookie");
 
   const res = await fetch("http://www.localhost:3000/api/cassetes", {
@@ -481,6 +488,7 @@ const sendCasseteJson = async (casJson) => {
   if (resJSON.error) {
     showMessage(resJSON.error);
   }
+  showCassetes();
 
 }
 
@@ -493,14 +501,17 @@ const showCassetes = async () => {
   });
   const resJSON = await res.json();
 
-  cassetesTable(resJSON);
+  arrayCassetes = [...resJSON];
+  
+  cassetesTable();
 
 }
 
-const cassetesTable = (cassetesJSON) => {
+const cassetesTable = () => {
+  tablaCassettesBody.innerHTML = "";
 
   const fragment = document.createDocumentFragment();
-  cassetesJSON.forEach(cas => {
+  arrayCassetes.forEach(cas => {
     const fila = document.createElement("tr");
 
     const colTxt = document.createElement("td");
@@ -515,6 +526,14 @@ const cassetesTable = (cassetesJSON) => {
     colOrg.textContent = cas.organo;
     fila.appendChild(colOrg);
 
+    const colButton = document.createElement("td");
+    const btn = document.createElement("button");
+    btn.value = cas.id_cas;
+    btn.innerHTML = '<i class="fa-solid fa-file-circle-question"></i>';
+    btn.className = "btn_details";
+    colButton.appendChild(btn);
+
+    fila.appendChild(colButton);
     fragment.appendChild(fila);
   });
 
@@ -522,5 +541,17 @@ const cassetesTable = (cassetesJSON) => {
 
 }
 
-formularioCassette.addEventListener("submit", createCassete);
+const casseteDetails = (event) => {
+  if (event.target.tagName === "I") {
+    casseteActivo = arrayCassetes.find(cas => cas.id_cas == event.target.parentElement.value);
+    detalleDescripcion.textContent = casseteActivo.descripcion;
+    detalleOrgano.textContent = casseteActivo.organo;
+    detalleFecha.textContent = casseteActivo.fecha.slice(0, casseteActivo.fecha.indexOf("T"));
+    detalleCaracteristicas.textContent = casseteActivo.caracteristicas;
+    detalleObservaciones.textContent = casseteActivo.observaciones;
+  }
+}
+
 document.addEventListener("DOMContentLoaded", showCassetes)
+formularioCassette.addEventListener("submit", createCassete);
+tablaCassettesBody.addEventListener("click", casseteDetails);
