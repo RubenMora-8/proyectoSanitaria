@@ -19,15 +19,20 @@ const sendLoginJson = async (userJson) => {
         body: JSON.stringify(userJson)
     });
     const resJSON = await res.json();
-    console.log(resJSON.token);
 
     if (!resJSON.error) {
         setCookie(resJSON.token);
+
+        sessionStorage.setItem("tipo",resJSON.user.tipo);
+        sessionStorage.setItem("id_tec",resJSON.user.id_tec);
         window.location = "./pages/aplicacion.html";
+    } else {
+        showMessage(resJSON.error);
     }
 }
 
 const setCookie = (value) => {
+
     const maxAge = 60 * 60 * 24;
     document.cookie = "tokenCookie=" + value + ";max-age=" + maxAge + ";path=/";
 }
@@ -35,9 +40,8 @@ const setCookie = (value) => {
 const passRecovery = async (event) => {
     event.preventDefault();
     const formData = new FormData(formularioLogin);
-    
 
 }
 
 formularioLogin.addEventListener("submit", loginUser);
-formRecovery.addEventListener("submit" , passRecovery)
+formRecovery.addEventListener("submit", passRecovery)

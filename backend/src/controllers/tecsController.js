@@ -80,13 +80,7 @@ const loginTec = async (req, res) => {
     res.status(200).json({
         message: "Usuario logeado correctamente",
         token: token,
-        user: {
-            nombre: loggedTec.nombre,
-            apellidos: loggedTec.apellidos,
-            email: loggedTec.mail,
-            centro: loggedTec.centro,
-            tipo: loggedTec.tipo
-        }
+        user: loggedTec
     });
 }
 

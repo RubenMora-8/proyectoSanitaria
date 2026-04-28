@@ -15,15 +15,15 @@
         <form class="formulario-acceso" action="#" method="POST">
             
             <div class="formulario-acceso__campo">
-                <input type="text" class="formulario-acceso__entrada" placeholder="Nombre" required>
+                <input name="nombre" type="text" class="formulario-acceso__entrada" placeholder="Nombre" required>
             </div>
 
             <div class="formulario-acceso__campo">
-                <input type="text" class="formulario-acceso__entrada" placeholder="Apellidos" required>
+                <input name="apellidos" type="text" class="formulario-acceso__entrada" placeholder="Apellidos" required>
             </div>
 
             <div class="formulario-acceso__campo">
-                <select class="formulario-acceso__entrada formulario-acceso__entrada--lista">
+                <select name="centro" class="formulario-acceso__entrada formulario-acceso__entrada--lista">
                     <option value="" disabled selected>Centro</option>
                     <option value="1">IES Ribera del Tajo</option>
                     <option value="2">IES Puerta de Cuartos</option>
@@ -33,12 +33,12 @@
             </div>
 
             <div class="formulario-acceso__campo">
-                <input type="email" class="formulario-acceso__entrada" placeholder="Email" required>
+                <input name="email" type="email" class="formulario-acceso__entrada" placeholder="Email" required>
             </div>
 
             <div class="formulario-acceso__campo">
                 <div class="formulario-acceso__contenedor-password">
-                    <input type="password" class="formulario-acceso__entrada" placeholder="Contraseña" required data-password-role="principal">
+                    <input name="password" type="password" class="formulario-acceso__entrada" placeholder="Contraseña" required data-password-role="principal">
                     <button type="button" class="formulario-acceso__toggle-password" aria-label="Mostrar contraseña" data-password-target="self">
                         <span class="formulario-acceso__icono-ojo" aria-hidden="true">👁</span>
                     </button>
@@ -48,6 +48,8 @@
 
             <button type="submit" class="formulario-acceso__boton-enviar">Registro</button>
             
+            <p class="infoMessage" id="infoMessage"></p>
+
             <footer class="formulario-acceso__pie">
                 <p>Si ya te has registrado anteriormente <a href="./index.html" class="formulario-acceso__enlace">Login</a></p>
             </footer>
@@ -56,5 +58,6 @@
     </main>
 
     <script src="./js/script.js"></script>
+    <script src="./js/register.js"></script>
 </body>
 </html>

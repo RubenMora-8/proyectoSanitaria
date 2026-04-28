@@ -337,7 +337,7 @@
     if (muestraAsociada) muestraAsociada.remove();
     estado.cassettePendienteEliminar.remove();
     estado.cassettePendienteEliminar = null;
-    guardarCassettes();
+    // guardarCassettes();
     modalEliminarCassette.hide();
     limpiarDetalle();
   }
@@ -392,11 +392,11 @@
       celdas[2].textContent = cassette.organoTexto;
       seleccionarCassette(fila);
     } else {
-      elementos.tablaCassettesBody.prepend(crearFilaCassette(cassette));
+      // elementos.tablaCassettesBody.prepend(crearFilaCassette(cassette));
     }
 
-    guardarCassettes();
-    aplicarOrden();
+    // guardarCassettes();
+    // aplicarOrden();
     activarCierreInstantaneo();
     modalCassette.hide();
   }
@@ -430,7 +430,7 @@
   function iniciar() {
     if (!cargarCassettesGuardados()) {
       limpiarDetalle();
-      guardarCassettes();
+      // guardarCassettes();
     }
     enlazarEventos();
     actualizarEstadoOrden();
@@ -438,3 +438,89 @@
 
   iniciar();
 })();
+
+// ----------------------------------------------------------------------
+
+const formularioCassette = document.getElementById("formNuevoCassette");
+const tablaCassettesBody = document.getElementById("tablaCassettesBody")
+
+const createCassete = async (event) => {
+  event.preventDefault();
+  const formData = new FormData(formularioCassette);
+  formData.append("id_tec", sessionStorage.getItem("id_tec"));
+  formData.append("qr_cassete", "QR pendiente");
+  const formJSON = Object.fromEntries(formData.entries());
+
+  sendCasseteJson(formJSON);
+}
+
+function getCookieByName(name) {
+  const cookies = document.cookie.split(';');
+  for (let cookie of cookies) {
+    cookie = cookie.trim();
+    if (cookie.startsWith(name + '=')) {
+      return cookie.substring(name.length + 1);
+    }
+  }
+  return null;
+}
+
+const sendCasseteJson = async (casJson) => {
+  const token = getCookieByName("tokenCookie");
+
+  const res = await fetch("http://www.localhost:3000/api/cassetes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": "Bearer " + token
+    },
+    body: JSON.stringify(casJson)
+  });
+  const resJSON = await res.json();
+
+  if (resJSON.error) {
+    showMessage(resJSON.error);
+  }
+
+}
+
+const showCassetes = async () => {
+  const token = getCookieByName("tokenCookie");
+  const res = await fetch("http://www.localhost:3000/api/cassetes", {
+    headers: {
+      "authorization": "Bearer " + token
+    }
+  });
+  const resJSON = await res.json();
+
+  cassetesTable(resJSON);
+
+}
+
+const cassetesTable = (cassetesJSON) => {
+
+  const fragment = document.createDocumentFragment();
+  cassetesJSON.forEach(cas => {
+    const fila = document.createElement("tr");
+
+    const colTxt = document.createElement("td");
+    colTxt.textContent = cas.fecha.slice(0, cas.fecha.indexOf("T"))
+    fila.appendChild(colTxt);
+
+    const colDesc = document.createElement("td");
+    colDesc.textContent = cas.descripcion;
+    fila.appendChild(colDesc);
+
+    const colOrg = document.createElement("td");
+    colOrg.textContent = cas.organo;
+    fila.appendChild(colOrg);
+
+    fragment.appendChild(fila);
+  });
+
+  tablaCassettesBody.appendChild(fragment);
+
+}
+
+formularioCassette.addEventListener("submit", createCassete);
+document.addEventListener("DOMContentLoaded", showCassetes)

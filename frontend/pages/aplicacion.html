@@ -9,6 +9,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="../css/login.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/app.css" />
     <link
@@ -94,7 +95,9 @@
 
               <div class="contenedor-casetes__listado">
                 <table class="tabla-app">
-                  <tbody id="tablaCassettesBody"></tbody>
+                  <tbody id="tablaCassettesBody">
+                    
+                  </tbody>
                 </table>
               </div>
             </div>
@@ -195,7 +198,7 @@
                 <label class="form-label modal-cassette__label" for="descripcionCorta">
                   Descripción corta
                 </label>
-                <input type="text" class="form-control modal-cassette__control" id="descripcionCorta" placeholder="Escribe una descripción breve" required/>
+                <input name="descripcion" type="text" class="form-control modal-cassette__control" id="descripcionCorta" placeholder="Escribe una descripción breve" required/>
               </div>
 
               <div class="row g-3 mb-3">
@@ -203,14 +206,14 @@
                   <label class="form-label modal-cassette__label" for="fechaCassette">
                     Fecha
                   </label>
-                  <input type="date" class="form-control modal-cassette__control" id="fechaCassette" required/>
+                  <input name="fecha" type="date" class="form-control modal-cassette__control" id="fechaCassette" required/>
                 </div>
 
                 <div class="col-12 col-md-6">
                   <label class="form-label modal-cassette__label" for="organoCassette">
                     Órgano
                   </label>
-                  <select class="form-select modal-cassette__control" id="organoCassette" required>
+                  <select name="organo" class="form-select modal-cassette__control" id="organoCassette" required>
                     <option value="" selected disabled>Selecciona un órgano</option>
                     <option value="pulmon">Pulmón</option>
                     <option value="rinon">Riñón</option>
@@ -224,14 +227,14 @@
                 <label class="form-label modal-cassette__label" for="caracteristicasCassette">
                   Características
                 </label>
-                <textarea class="form-control modal-cassette__control modal-cassette__textarea" id="caracteristicasCassette" placeholder="Añade las características del cassette" required></textarea>
+                <textarea name="caracteristicas" class="form-control modal-cassette__control modal-cassette__textarea" id="caracteristicasCassette" placeholder="Añade las características del cassette" required></textarea>
               </div>
 
               <div class="mb-4">
                 <label class="form-label modal-cassette__label" for="observacionesCassette">
                   Observaciones
                 </label>
-                <textarea class="form-control modal-cassette__control modal-cassette__textarea" id="observacionesCassette" placeholder="Añade observaciones adicionales" required></textarea>
+                <textarea name="observaciones" class="form-control modal-cassette__control modal-cassette__textarea" id="observacionesCassette" placeholder="Añade observaciones adicionales" required></textarea>
               </div>
 
               <p class="modal-cassette__mensaje-error d-none" id="mensajeErrorCassette" aria-live="polite">
@@ -241,6 +244,7 @@
               <button type="submit" class="btn w-100 modal-cassette__boton" id="botonGuardarCassette">
                 Crear Cassette
               </button>
+              <p class="infoMessage" id="infoMessage"></p>
             </form>
           </div>
         </div>
@@ -283,6 +287,7 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <script src="../js/aplicacion.js"></script>
+    <script src="./../js/script.js"></script>
+    <script src="./../js/aplicacion.js"></script>
   </body>
 </html>
