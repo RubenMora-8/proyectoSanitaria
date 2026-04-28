@@ -67,9 +67,8 @@ botonesTogglePassword.forEach((boton) => {
     });
 });
 
-const formularioRegistro = document.getElementById('formularioRegistro');
+const formularioRegistro = document.querySelector('form.formulario-acceso');
 const passwordRegistro = document.querySelector('[data-password-role="principal"]');
-const passwordConfirmacion = document.querySelector('[data-password-role="confirmacion"]');
 
 const obtenerAyudaPassword = (input) => input?.closest('.formulario-acceso__campo')?.querySelector('.formulario-acceso__ayuda');
 
@@ -119,87 +118,48 @@ const actualizarEstadoAyuda = (ayuda, mensaje, esValido) => {
     }
 
     ayuda.textContent = mensaje;
+    ayuda.classList.toggle('formulario-acceso__ayuda--oculta', mensaje.length === 0);
     ayuda.classList.toggle('formulario-acceso__ayuda--error', !esValido);
     ayuda.classList.toggle('formulario-acceso__ayuda--ok', esValido);
 };
 
-const validarPasswordsRegistro = () => {
-    if (!passwordRegistro || !passwordConfirmacion) {
+const validarPasswordRegistro = () => {
+    if (!passwordRegistro) {
         return true;
     }
 
     const ayudaPrincipal = obtenerAyudaPassword(passwordRegistro);
-    const ayudaConfirmacion = obtenerAyudaPassword(passwordConfirmacion);
     const password = passwordRegistro.value.trim();
-    const confirmacion = passwordConfirmacion.value.trim();
-
-    let passwordValida = false;
-    let confirmacionValida = false;
 
     if (password.length === 0) {
-        actualizarEstadoAyuda(
-            ayudaPrincipal,
-            'La contraseña debe tener entre 8 y 16 caracteres, mayúsculas, minúsculas, números y símbolos.',
-            false
-        );
         passwordRegistro.setCustomValidity('Introduce una contraseña.');
-    } else {
-        const faltantes = validarRequisitosPassword(password);
-
-        if (faltantes.length === 0) {
-            actualizarEstadoAyuda(ayudaPrincipal, 'La contraseña cumple todos los requisitos.', true);
-            passwordRegistro.setCustomValidity('');
-            passwordValida = true;
-        } else {
-            const mensaje = formatearMensajeFaltantes(faltantes);
-            actualizarEstadoAyuda(ayudaPrincipal, mensaje, false);
-            passwordRegistro.setCustomValidity(mensaje);
-        }
+        actualizarEstadoAyuda(ayudaPrincipal, '', false);
+        return false;
     }
 
-    if (confirmacion.length === 0) {
-        actualizarEstadoAyuda(
-            ayudaConfirmacion,
-            'Repite la contraseña.',
-            false
-        );
-        passwordConfirmacion.setCustomValidity('Repite la contraseña.');
-    } else if (confirmacion !== password) {
-        actualizarEstadoAyuda(ayudaConfirmacion, 'Las contraseñas no coinciden.', false);
-        passwordConfirmacion.setCustomValidity('Las contraseñas no coinciden.');
-    } else {
-        const faltantesConfirmacion = validarRequisitosPassword(confirmacion);
+    const faltantes = validarRequisitosPassword(password);
 
-        if (faltantesConfirmacion.length === 0) {
-            actualizarEstadoAyuda(ayudaConfirmacion, 'Las contraseñas coinciden correctamente.', true);
-            passwordConfirmacion.setCustomValidity('');
-            confirmacionValida = true;
-        } else {
-            const mensaje = formatearMensajeFaltantes(faltantesConfirmacion);
-            actualizarEstadoAyuda(ayudaConfirmacion, mensaje, false);
-            passwordConfirmacion.setCustomValidity(mensaje);
-        }
+    if (faltantes.length === 0) {
+        passwordRegistro.setCustomValidity('');
+        actualizarEstadoAyuda(ayudaPrincipal, '', true);
+        return true;
     }
 
-    return passwordValida && confirmacionValida;
+    const mensaje = formatearMensajeFaltantes(faltantes);
+    actualizarEstadoAyuda(ayudaPrincipal, mensaje, false);
+    passwordRegistro.setCustomValidity(mensaje);
+    return false;
 };
 
-if (formularioRegistro && passwordRegistro && passwordConfirmacion) {
-    validarPasswordsRegistro();
+if (formularioRegistro && passwordRegistro) {
+    validarPasswordRegistro();
 
-    passwordRegistro.addEventListener('input', validarPasswordsRegistro);
-    passwordConfirmacion.addEventListener('input', validarPasswordsRegistro);
+    passwordRegistro.addEventListener('input', validarPasswordRegistro);
 
     formularioRegistro.addEventListener('submit', (event) => {
-        if (!validarPasswordsRegistro()) {
+        if (!validarPasswordRegistro()) {
             event.preventDefault();
             formularioRegistro.reportValidity();
         }
     });
-}
-
-const infoMessage = document.getElementById("infoMessage");
-
-const showMessage = (message) => {
-    infoMessage.textContent = message;
 }

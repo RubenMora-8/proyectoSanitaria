@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,36 +7,32 @@
     <link rel="stylesheet" href="./css/login.css">
     <link rel="shortcut icon" href="./assets/images/LogoRiberaNuevo.png" type="image/x-icon">
 </head>
-
 <body class="contenedor-principal">
     <main class="tarjeta-acceso">
         <section id="seccion-login" class="tarjeta-acceso__contenido">
             <h1 class="tarjeta-acceso__titulo">Login</h1>
-
-            <form class="formulario-acceso" id="formularioLogin">
+            <form class="formulario-acceso">
                 <div class="formulario-acceso__campo">
-                    <input name="email" type="email" class="formulario-acceso__entrada" placeholder="Correo" required>
+                    <input type="email" class="formulario-acceso__entrada" placeholder="Correo" required>
                 </div>
                 <div class="formulario-acceso__campo">
                     <div class="formulario-acceso__contenedor-password">
-                        <input name="password" type="password" class="formulario-acceso__entrada"
-                            placeholder="Contraseña" required>
-                        <button id="botonLogin" type="button" class="formulario-acceso__toggle-password"
-                            aria-label="Mostrar contraseña" data-password-target="self">
+                        <input type="password" class="formulario-acceso__entrada" placeholder="Contraseña" required>
+                        <button type="button" class="formulario-acceso__toggle-password" aria-label="Mostrar contraseña" data-password-target="self">
                             <span class="formulario-acceso__icono-ojo" aria-hidden="true">👁</span>
                         </button>
                     </div>
                 </div>
-                <p class="infoMessage" id="infoMessage"></p>
+
                 <button type="submit" class="formulario-acceso__boton-enviar">Login</button>
             </form>
         </section>
 
         <section id="seccion-recuperar" class="tarjeta-acceso__contenido tarjeta-acceso__contenido--oculto">
             <h1 class="tarjeta-acceso__titulo">Solicitar Contraseña</h1>
-            <form class="formulario-acceso" id="formRecovery">
+            <form class="formulario-acceso">
                 <div class="formulario-acceso__campo">
-                    <input type="email" name="emailRecovery" class="formulario-acceso__entrada" placeholder="Correo" required>
+                    <input type="email" class="formulario-acceso__entrada" placeholder="Correo" required>
                 </div>
                 <button type="submit" class="formulario-acceso__boton-enviar">Solicitar Contraseña</button>
             </form>
@@ -45,8 +40,8 @@
 
         <footer class="formulario-acceso__pie">
             <div id="footer-login" class="formulario-acceso__pie-bloque">
-                <p>Si no tienes cuenta... <a href="./register.html" class="formulario-acceso__enlace">Registro</a></p>
-                <a href="#" id="abrir-recuperar" class="formulario-acceso__recuperar">Olvidaste tu contraseña...</a>
+            <p>Si no tienes cuenta... <a href="./register.html" class="formulario-acceso__enlace">Registro</a></p>
+            <a href="#" id="abrir-recuperar" class="formulario-acceso__recuperar">Olvidaste tu contraseña...</a>
             </div>
             <div id="footer-recuperar" class="formulario-acceso__pie-bloque tarjeta-acceso__contenido--oculto">
                 <p>Volver a <a href="#" id="volver-login" class="formulario-acceso__enlace">Login</a></p>
@@ -55,7 +50,5 @@
     </main>
 
     <script src="./js/script.js"></script>
-    <script src="./js/login.js"></script>
 </body>
-
 </html>

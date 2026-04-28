@@ -190,6 +190,34 @@
     font-size: 1.2rem;
 }
 
+.contenedor-muestras {
+    border: 1px solid var(--azul-claro);
+    border-top: 0;
+}
+
+.contenedor-muestras__acciones .btn-icono {
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.contenedor-muestras__mensaje {
+    margin-bottom: 1rem;
+    color: #c1121f;
+    font-size: 0.72rem;
+    line-height: 1.2;
+    background-color: transparent;
+    padding: 0;
+}
+
+.contenedor-muestras__listado {
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+.tabla-app__fila--muestra td {
+    background-color: #f8fbfd;
+}
+
 /* Modal nuevo cassette */
 .modal-cassette .modal-dialog {
     max-width: 620px;
@@ -348,4 +376,3 @@ body.modal-cassette-force-close .modal-backdrop {
 .tabla-app tbody tr:hover {
     background-color: #e8f1f6 !important;
 }
-
