@@ -116,6 +116,7 @@ const uploadImagenMuestra = async (req, res) => {
             id_img: nuevaImagen.id_img
         });
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: "Error en la base de datos", errores: [error.message] });
     }
 }

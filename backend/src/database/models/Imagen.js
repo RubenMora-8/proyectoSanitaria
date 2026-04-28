@@ -26,7 +26,7 @@ Imagen.init(
     {
         sequelize,
         tableName: "imagenes",
-        timestamps: true
+        timestamps: false
     }
 )
 
