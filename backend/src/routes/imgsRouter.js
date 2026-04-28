@@ -16,4 +16,12 @@ imgsRouter.get("/:id_muestra", authMiddleware.checkToken, imgsController.getAllI
 imgsRouter.get("/imagen/:id_img", authMiddleware.checkToken, imgsController.getImageId);
 imgsRouter.delete("/:id_img", authMiddleware.checkToken, imgsController.deleteImg);
 
+imgsRouter.post(
+    "/muestra/:id_muestra",
+    authMiddleware.checkToken,
+    upload.single("imagen"),
+    imgsController.uploadImagenMuestra
+);
+
+
 module.exports = imgsRouter;

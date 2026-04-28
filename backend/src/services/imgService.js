@@ -29,5 +29,6 @@ module.exports = {
     getAllImages,
     getImageId,
     getAllImgsMuestra,
-    deleteImg
+    deleteImg,
+    createImage
 }
