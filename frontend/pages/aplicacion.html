@@ -235,7 +235,10 @@
 
               </section>
 
-              <section class="section-muestras-img p-3">
+              <section class="section-muestras-img p-3 text-end">
+                <button class="btn-icono" title="Eliminar" type="button" id="botonEliminarImg">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
                 <img id="bigImage" class="muestras-img" src="./../assets/images/noimage.jpg" alt="imagen muestra">
               </section>
             </div>
@@ -244,12 +247,12 @@
             <!-- subida de imágenes -->
 
             <form class="p-3" id="formImg">
+              <label class="form-label modal-cassette__label" for="image-muestra">Subir imagen</label>
+              <br>
               <div>
-                <label class="form-label modal-cassette__label" for="image-muestra">Subir imagen</label>
-                <br>
                 <input type="file" name="imagen" id="image-muestra">
+                <input type="submit" value="Subir imagen">
               </div>
-              <input type="submit" value="Subir">
             </form>
 
             <section id="listaImgs" class="muestra-img-list p-3 flex-wrap gap-3">

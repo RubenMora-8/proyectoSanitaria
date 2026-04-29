@@ -471,6 +471,7 @@ const btncancelarDeleteMues = document.getElementById("btncancelarDeleteMues");
 const formImg = document.getElementById("formImg");
 const listaImgs = document.getElementById("listaImgs");
 const bigImage = document.getElementById("bigImage");
+const botonEliminarImg = document.getElementById("botonEliminarImg");
 
 let arrayCassetes = [];
 let arrayMuestras = [];
@@ -822,27 +823,27 @@ const showAllImgs = async () => {
   } else {
     arrayImgs = null;
   }
-  
+
   listarImgs();
 }
 
 const listarImgs = async () => {
 
-  console.log(arrayImgs);
-  
   if (!arrayImgs) {
     bigImage.src = "./../assets/images/noimage.jpg";
   } else {
     bigImage.src = "data:image/png;base64," + arrayImgs[0].imagen_base64;
-    
+    bigImage.alt = arrayImgs[0].id_img;
+
     const fragment = document.createDocumentFragment();
     arrayImgs.forEach(img => {
-      
+
       const imagen = document.createElement("img");
       imagen.src = "data:image/png;base64," + img.imagen_base64;
+      imagen.alt = img.id_img;
       fragment.appendChild(imagen);
     });
-    
+
     listaImgs.appendChild(fragment);
   }
 }
@@ -851,7 +852,31 @@ const zoomImage = (event) => {
   if (event.target.tagName === "IMG") {
     const img = event.target;
     bigImage.src = img.src;
+    bigImage.alt = img.alt;
   }
+}
+
+const eliminarImg = async () => {
+  const token = getCookieByName("tokenCookie");
+
+  if (!bigImage.alt) {
+    return null;
+  }
+
+  const res = await fetch("http://www.localhost:3000/api/imgs/" + bigImage.alt, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": "Bearer " + token
+    }
+  });
+  const resJSON = await res.json();
+
+  if (resJSON.error) {
+    console.log(resJSON);
+  }
+  console.log(bigImage.alt);
+  showAllImgs();
 }
 
 // filtro de cassetes
@@ -872,6 +897,7 @@ confirmarEliminarCassette.addEventListener("click", deleteCassete);
 confirmarDeleteMuestra.addEventListener("click", deleteMues);
 
 botonEliminarMuestra.addEventListener("click", confirmationDeleteMues);
+botonEliminarImg.addEventListener("click", eliminarImg);
 btncancelarDeleteCas.addEventListener("click", cancelarDeleteCas);
 btncancelarDeleteMues.addEventListener("click", cancelarDeleteMues);
 
