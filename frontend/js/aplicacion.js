@@ -475,6 +475,12 @@ let arrayMuestras = [];
 let casseteActivo = null;
 let muestraActiva = null;
 
+const checkLogin = () => {
+  if (!sessionStorage.getItem("id_tec")) {
+    window.location = "./../index.html";
+  }
+}
+
 const createCassete = async (event) => {
   event.preventDefault();
   const formData = new FormData(formularioCassette);
@@ -767,14 +773,13 @@ const deleteMues = async () => {
   closeMuestraDetails();
 }
 
-// enviar imágenes
+// gestionar imágenes
 
 const sendImage = async () => {
   event.preventDefault();
   const formData = new FormData(formImg);
   const formJSON = Object.fromEntries(formData.entries());
 
-  console.log(formData);
   sendImageJson(formData);
 }
 
@@ -783,16 +788,30 @@ const sendImageJson = async (formdataImg) => {
   const res = await fetch("http://www.localhost:3000/api/imgs/muestra/" + muestraActiva.id_muestra, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json; charset=UTF-8",
       "authorization": "Bearer " + token
     },
-    body: JSON.stringify(formdataImg)
+    body: formdataImg
   });
   const resJSON = await res.json();
 
   if (resJSON.error) {
     console.log(resJSON);
+  } else {
+    formImg.reset();
   }
+}
+
+const showAllImgs = async () => {
+  const token = getCookieByName("tokenCookie");
+  const res = await fetch("http://www.localhost:3000/api/muestras/" + casseteActivo.id_cas, {
+    headers: {
+      "authorization": "Bearer " + token
+    }
+  });
+  const resJSON = await res.json();
+
+  arrayMuestras = [...resJSON];
+  tableMuestras(resJSON);
 }
 
 // filtro de cassetes
@@ -800,6 +819,7 @@ const sendImageJson = async (formdataImg) => {
 
 
 document.addEventListener("DOMContentLoaded", showCassetes);
+document.addEventListener("DOMContentLoaded", checkLogin);
 formularioCassette.addEventListener("submit", createCassete);
 modalNuevaMuestra.addEventListener("submit", createMuestra);
 tablaCassettesBody.addEventListener("click", casseteDetails);
