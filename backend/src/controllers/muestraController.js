@@ -1,4 +1,5 @@
 const muestraService = require("../services/muestraService.js");
+const qrService = require("../services/qrService.js");
 
 const getAllMuestras = async (req, res) => {
     try {
@@ -22,8 +23,8 @@ const createMuestra = async (req, res) => {
     const muestra = req.body;
 
     if (!muestra.fecha || !muestra.observaciones ||
-        !muestra.descripcion  || !muestra.qr_muestra ||
-        !muestra.tincion || !muestra.id_cas) {
+        !muestra.descripcion || !muestra.tincion ||
+        !muestra.id_cas) {
 
         return res.status(400).json({
             error: "Falta alguno de los campos requeridos"
@@ -31,27 +32,25 @@ const createMuestra = async (req, res) => {
     }
 
     try {
+        const textoQR = `MUESTRA-${Date.now()}`;
+        const imagenQR = await qrService.generarQRBuffer(textoQR);
+    
+        muestra.qr_muestra = imagenQR;
+        
         const createdMuestra = await muestraService.createMuestra(muestra);
-
-        if (!createdMuestra) {
-            return res.status(500).json({
-                error: "Error en la base de datos",
-                msg: "No se ha podido registrar la muestra"
-            });
-        }
 
         res.status(200).json({
             message: "Muestra creada correctamente",
             data: createdMuestra
         });
     } catch (error) {
+        console.error(error);
         res.status(500).json({
             error: "Error en la base de datos",
             errores: [error.message]
         });
     }
-}
-
+};
 const getAllMuestrasCassete = async (req, res) => {
     try {
         const id_cas = req.params.id_cas;

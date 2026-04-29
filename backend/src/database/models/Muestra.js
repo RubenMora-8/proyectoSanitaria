@@ -62,20 +62,8 @@ Muestra.init(
             }
         },
         qr_muestra: {
-            type: DataTypes.STRING(200),
-            allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "El QR es un campo obligatorio"
-                },
-                notEmpty: {
-                    msg: "El campo QR no puede ir vacío"
-                },
-                len: {
-                    args: [0, 100],
-                    msg: "El tamaño del campo QR no puede superar 50 caracteres"
-                }
-            }
+            type: DataTypes.BLOB('long'), 
+            allowNull: false
         },
         id_cas: {
             type: DataTypes.INTEGER,

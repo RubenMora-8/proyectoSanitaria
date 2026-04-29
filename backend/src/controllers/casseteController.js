@@ -1,4 +1,5 @@
 const casseteService = require("../services/casseteService.js");
+const qrService = require("../services/qrService.js");
 
 const getAllCassetes = async (req, res) => {
     try {
@@ -44,7 +45,7 @@ const createCassete = async (req, res) => {
 
     if (!cassete.fecha || !cassete.observaciones ||
         !cassete.descripcion || !cassete.caracteristicas ||
-        !cassete.qr_cassete || !cassete.organo || !cassete.id_tec) {
+        !cassete.organo || !cassete.id_tec) {
 
         return res.status(400).json({
             error: "Falta alguno de los campos requeridos"
@@ -52,26 +53,25 @@ const createCassete = async (req, res) => {
     }
 
     try {
+        const textoQR = `CASSETE-${Date.now()}`;
+        const imagenQR = await qrService.generarQRBuffer(textoQR);
+        
+        cassete.qr_cassete = imagenQR;
+        
         const createdCassete = await casseteService.createCassete(cassete);
-
-        if (!createdCassete) {
-            return res.status(500).json({
-                error: "Error en la base de datos",
-                msg: "No se ha podido registrar el cassete"
-            });
-        }
 
         res.status(200).json({
             message: "Cassete creado correctamente",
             data: createdCassete
         });
     } catch (error) {
+        console.error(error);
         res.status(500).json({
             error: "Error en la base de datos",
             errores: [error.message]
         });
     }
-}
+};
 
 const deleteCassete = async (req, res) => {
 
