@@ -7,6 +7,15 @@ const getAllMuestras = async () => {
     return allMuestras;
 }
 
+const createMuestra = async (muestra) => {
+    const createdMuestra = await muestraModel.create({
+        fecha: muestra.fecha, observaciones: muestra.observaciones,
+        descripcion: muestra.descripcion, qr_muestra: muestra.qr_muestra,
+        tincion: muestra.tincion, id_cas: muestra.id_cas
+    });
+    return createdMuestra;
+}
+
 const getAllMuestrasCassete = async (idcassete) => {
     const allMuestras = await muestraModel.findAll({ where: { id_cas: idcassete } });
     return allMuestras;
@@ -23,24 +32,25 @@ const deleteMuestra = async (idmuestra) => {
 }
 
 const getMuestrasByTecnico = async (id_tec) => {
-    const cassetes = await casseteModel.findAll({ 
-        where: { id_tec: id_tec } 
+    const cassetes = await casseteModel.findAll({
+        where: { id_tec: id_tec }
     });
-    
+
     const idsCassetes = cassetes.map(c => c.id_cas);
-    
+
     const muestras = await muestraModel.findAll({
-        where: { 
-            id_cas: { [sq.in]: idsCassetes } 
+        where: {
+            id_cas: { [sq.in]: idsCassetes }
         }
     });
-    
+
     return muestras;
 };
 
 module.exports = {
     getAllMuestras,
     getMuestraId,
+    createMuestra,
     getAllMuestrasCassete,
     getMuestrasByTecnico,
     deleteMuestra

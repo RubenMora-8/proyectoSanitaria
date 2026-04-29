@@ -424,7 +424,7 @@
     elementos.botonEditarCassette.addEventListener("click", abrirModalEditarCassette);
     elementos.botonEliminarCassette.addEventListener("click", abrirModalEliminarCassette);
     elementos.botonConfirmarEliminarCassette.addEventListener("click", eliminarCassetteSeleccionado);
-    elementos.botonCrearMuestra.addEventListener("click", crearMuestraDesdeSeleccion);
+    // elementos.botonCrearMuestra.addEventListener("click", crearMuestraDesdeSeleccion);
   }
 
   function iniciar() {
@@ -442,12 +442,19 @@
 // ----------------------------------------------------------------------
 
 const formularioCassette = document.getElementById("formNuevoCassette");
+const formNuevaMuestra = document.getElementById("formNuevaMuestra");
 const tablaCassettesBody = document.getElementById("tablaCassettesBody");
 const detalleDescripcion = document.getElementById("detalleDescripcion");
 const detalleOrgano = document.getElementById("detalleOrgano");
 const detalleFecha = document.getElementById("detalleFecha");
 const detalleCaracteristicas = document.getElementById("detalleCaracteristicas");
 const detalleObservaciones = document.getElementById("detalleObservaciones");
+const botonCrearMuestra = document.getElementById("botonCrearMuestra");
+const modalNuevaMuestra = document.getElementById("modalNuevaMuestra");
+const btnCloseMuestra = document.getElementById("btnCloseMuestra");
+const mensajeMuestra = document.getElementById("mensajeMuestra");
+
+
 let arrayCassetes = [];
 let casseteActivo = null;
 
@@ -502,7 +509,7 @@ const showCassetes = async () => {
   const resJSON = await res.json();
 
   arrayCassetes = [...resJSON];
-  
+
   cassetesTable();
 
 }
@@ -552,6 +559,50 @@ const casseteDetails = (event) => {
   }
 }
 
+const showModalMuestra = () => {
+  if (casseteActivo == null) {
+    mensajeMuestra.classList.remove("d-none");
+    return null;
+  }
+  mensajeMuestra.classList.add("d-none");
+  modalNuevaMuestra.classList.remove("hidden");
+}
+
+const closeModalMuestra = () => {
+  modalNuevaMuestra.classList.add("hidden");
+}
+
+const createMuestra = async () => {
+  event.preventDefault();
+  const formData = new FormData(formNuevaMuestra);
+  formData.append("qr_muestra", "QR pendiente");
+  formData.append("id_cas", casseteActivo.id_cas);
+  const formJSON = Object.fromEntries(formData.entries());
+
+  createMuestraJson(formJSON);
+}
+
+const createMuestraJson = async (muestraJson) => {
+  const token = getCookieByName("tokenCookie");
+  const res = await fetch("http://www.localhost:3000/api/muestras", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": "Bearer " + token
+    },
+    body: JSON.stringify(muestraJson)
+  });
+  const resJSON = await res.json();
+
+  if (resJSON.error) {
+    showMessage(resJSON.error);
+  }
+  console.log(resJSON);
+}
+
 document.addEventListener("DOMContentLoaded", showCassetes)
 formularioCassette.addEventListener("submit", createCassete);
+modalNuevaMuestra.addEventListener("submit", createMuestra);
 tablaCassettesBody.addEventListener("click", casseteDetails);
+botonCrearMuestra.addEventListener("click", showModalMuestra);
+btnCloseMuestra.addEventListener("click", closeModalMuestra);
