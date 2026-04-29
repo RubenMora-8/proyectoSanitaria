@@ -469,11 +469,15 @@ const btncancelarDeleteCas = document.getElementById("btncancelarDeleteCas");
 const confirmarDeleteMuestra = document.getElementById("confirmarDeleteMuestra");
 const btncancelarDeleteMues = document.getElementById("btncancelarDeleteMues");
 const formImg = document.getElementById("formImg");
+const listaImgs = document.getElementById("listaImgs");
+const bigImage = document.getElementById("bigImage");
 
 let arrayCassetes = [];
 let arrayMuestras = [];
+let arrayImgs = [];
 let casseteActivo = null;
 let muestraActiva = null;
+let imgActiva = null;
 
 const checkLogin = () => {
   if (!sessionStorage.getItem("id_tec")) {
@@ -516,7 +520,7 @@ const createCasseteJson = async (casJson) => {
   const resJSON = await res.json();
 
   if (resJSON.error) {
-    console.log(resJSON);
+
   }
   showCassetes();
 
@@ -692,6 +696,7 @@ const muestraDetails = () => {
     detalleCaracteristicasMuestra.textContent = muestraActiva.observaciones;
 
     showDetailsMuestra();
+    showAllImgs();
   }
 }
 
@@ -798,20 +803,55 @@ const sendImageJson = async (formdataImg) => {
     console.log(resJSON);
   } else {
     formImg.reset();
+    showAllImgs();
   }
 }
 
 const showAllImgs = async () => {
+  listaImgs.innerHTML = "";
   const token = getCookieByName("tokenCookie");
-  const res = await fetch("http://www.localhost:3000/api/muestras/" + casseteActivo.id_cas, {
+  const res = await fetch("http://www.localhost:3000/api/imgs/" + muestraActiva.id_muestra, {
     headers: {
       "authorization": "Bearer " + token
     }
   });
   const resJSON = await res.json();
 
-  arrayMuestras = [...resJSON];
-  tableMuestras(resJSON);
+  if (!resJSON.msg) {
+    arrayImgs = [...resJSON];
+  } else {
+    arrayImgs = null;
+  }
+  
+  listarImgs();
+}
+
+const listarImgs = async () => {
+
+  console.log(arrayImgs);
+  
+  if (!arrayImgs) {
+    bigImage.src = "./../assets/images/noimage.jpg";
+  } else {
+    bigImage.src = "data:image/png;base64," + arrayImgs[0].imagen_base64;
+    
+    const fragment = document.createDocumentFragment();
+    arrayImgs.forEach(img => {
+      
+      const imagen = document.createElement("img");
+      imagen.src = "data:image/png;base64," + img.imagen_base64;
+      fragment.appendChild(imagen);
+    });
+    
+    listaImgs.appendChild(fragment);
+  }
+}
+
+const zoomImage = (event) => {
+  if (event.target.tagName === "IMG") {
+    const img = event.target;
+    bigImage.src = img.src;
+  }
 }
 
 // filtro de cassetes
@@ -834,4 +874,6 @@ confirmarDeleteMuestra.addEventListener("click", deleteMues);
 botonEliminarMuestra.addEventListener("click", confirmationDeleteMues);
 btncancelarDeleteCas.addEventListener("click", cancelarDeleteCas);
 btncancelarDeleteMues.addEventListener("click", cancelarDeleteMues);
+
 formImg.addEventListener("submit", sendImage);
+listaImgs.addEventListener("click", zoomImage);
