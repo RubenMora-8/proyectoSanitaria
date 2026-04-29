@@ -39,7 +39,7 @@
     border-bottom: 1px solid #dce8ef;
     position: sticky;
     top: 0;
-    z-index: 3;
+    z-index: 1;
 }
 
 .contenedor-casetes__filtros {
@@ -197,8 +197,11 @@
 }
 
 .contenedor-muestras {
-    border: 1px solid var(--azul-claro);
-    border-top: 0;
+    display: flex;
+    gap: 0;
+    padding: 8px 10px;
+    background-color: #f8fafc;
+    border-top: 1px solid #edf2f7;
 }
 
 .contenedor-muestras__acciones .btn-icono {
@@ -207,17 +210,23 @@
 }
 
 .contenedor-muestras__mensaje {
-    margin-bottom: 1rem;
     color: #c1121f;
     font-size: 0.72rem;
     line-height: 1.2;
     background-color: transparent;
-    padding: 0;
+    padding: 0.5rem;
+    text-align: center;
+    margin: 0;
 }
 
 .contenedor-muestras__listado {
-    max-height: 260px;
-    overflow-y: auto;
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--azul-principal);
+    font-size: 0.82rem;
+    text-align: center;
 }
 
 .tabla-app__fila--muestra td {
@@ -462,7 +471,8 @@ body.modal-cassette-force-close .modal-backdrop {
 }
 
 .modal-confirmation-delete {
-    width: 300px;
+    margin-top: 100px;
+    width: 500px;
     height: 200px;
     background-color: #F4F7F9;
     padding: 30px;
@@ -476,6 +486,20 @@ body.modal-cassette-force-close .modal-backdrop {
 
 .container-confirmation {
     z-index: 60;
+}
+
+.btnCloseQR{
+    margin: 10px;
+    margin-left: 100px;
+    color: var(--azul-principal);
+    width: 30px;
+    border: none;
+    background-color: none;
+
+}
+
+.btnCloseQR i:hover {
+    color: rgb(0, 93, 180);
 }
 
 .hidden {

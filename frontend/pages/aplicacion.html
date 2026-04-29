@@ -21,10 +21,78 @@
     <div class="container-fluid">
       <div class="row gx-2 gy-2 align-items-center justify-content-center text-center">
         <div class="col-12 col-lg-3 col-xl-2">
-          <select class="form-select text-center barra-herramientas__selector">
-            <option value="" disabled selected>Seleccionar un Órgano</option>
-            <option value="pulmon">Pulmón</option>
-            <option value="riñon">Riñón</option>
+          <select class="form-select barra-herramientas__selector" id="organos"
+            aria-label="Floating label select example">
+            <option disabled selected>Seleccionar un Órgano</option>
+            <option value="*">Todos</option>
+            <optgroup label="Sistema Nervioso">
+              <option>Encéfalo</option>
+              <option>Médula Espinal</option>
+              <option>Nervio</option>
+              <option>Ganglio Nervios</option>
+            </optgroup>
+
+
+            <optgroup label="Tegumento">
+              <option>Piel</option>
+              <option>Uña</option>
+              <option>Pelo</option>
+            </optgroup>
+
+
+            <optgroup label="Cardiovascular">
+              <option>Corazón</option>
+              <option>Venas</option>
+              <option>Arteria</option>
+            </optgroup>
+
+
+            <optgroup label="Linfático">
+              <option>Ganglio Linfático</option>
+              <option>Timo</option>
+              <option>Bazo</option>
+            </optgroup>
+
+
+            <optgroup label="Sistema Digestivo">
+              <option>Lengua</option>
+              <option>Esófago</option>
+              <option>Estómago</option>
+              <option>Intestino Delgado</option>
+              <option>Intestino Grueso</option>
+              <option>Diente</option>
+              <option>Glándula Salivar</option>
+              <option>Páncrea</option>
+              <option>Hígado</option>
+            </optgroup>
+
+
+            <optgroup label="Aparato Excretor">
+              <option>Riñón</option>
+              <option>Vejiga</option>
+            </optgroup>
+
+
+            <optgroup label="Respiratorio">
+              <option>Tránquea</option>
+              <option>Bronquios</option>
+              <option>Tejido Respiratorio</option>
+            </optgroup>
+
+
+            <optgroup label="Endocrino">
+              <option>Tiroides</option>
+              <option>Parótidas</option>
+              <option>Suprarrenales</option>
+              <option>Ovario</option>
+              <option>Testículo</option>
+            </optgroup>
+
+
+            <optgroup label="Locomotor">
+              <option>Hueso</option>
+              <option>Musculo Esquelético</option>
+            </optgroup>
           </select>
         </div>
 
@@ -45,6 +113,16 @@
   </header>
 
   <main class="aplicacion py-4">
+
+    <!-- contenedor de QR -->
+
+    <div id="containerQR" class="d-none position-fixed top-0 m-0 dark-background d-flex justify-content-center flex-column align-items-center w-100 h-100 z-3">
+      <button id="btnCloseQR" class="btnCloseQR">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img id="imgQR" src="" alt="qr">
+    </div>
+
     <div class="container py-4">
       <section class="row g-3 justify-content-center">
         <div class="col-12 col-md-6 col-xl-5">
@@ -90,9 +168,9 @@
         <!-- modales de confirmacion de borrado-->
         <!-- borrado de cassete -->
         <div id="confirmationDeleteCasmodal"
-          class="position-fixed z-3 d-flex justify-content-center w-100 h-100 dark-background d-none container-confirmation">
+          class="top-0 m-0 pt-5 position-fixed z-3 d-flex justify-content-center w-100 h-100 dark-background d-none container-confirmation">
 
-          <div class="modal-body modal-confirmation-delete">
+          <div class="modal-confirmation-delete">
             <p class="modal-cassette__texto mb-4" id="textoEliminarCassette">
               ¿Quieres eliminar este cassette?
             </p>
@@ -111,9 +189,9 @@
 
         <!-- borrado de muestra -->
         <div id="confirmationDeleteMuesmodal"
-          class="position-fixed d-flex justify-content-center w-100 h-100 dark-background d-none container-confirmation">
+          class="top-0 m-0 pt-5 position-fixed d-flex justify-content-center w-100 h-100 dark-background d-none container-confirmation">
 
-          <div class="modal-body modal-confirmation-delete">
+          <div class="modal-confirmation-delete">
             <p class="modal-cassette__texto mb-4" id="textoEliminarCassette">
               ¿Quieres eliminar esta muestra?
             </p>
@@ -138,7 +216,7 @@
                 <h2 class="h5 mb-0 texto-suave">DETALLE CASSETTE</h2>
               </div>
               <div class="contenedor-detalle__acciones">
-                <button class="btn-icono" title="Código QR">
+                <button class="btn-icono" title="Código QR" id="btnQR">
                   <i class="fas fa-qrcode"></i>
                 </button>
                 <button class="btn-icono" title="Eliminar" type="button" id="botonEliminarCassette">
@@ -256,7 +334,7 @@
             </form>
 
             <section id="listaImgs" class="muestra-img-list p-3 flex-wrap gap-3">
-              <img class="muestras-img" src="./../assets/images/muestraPrueba.png" alt="imagen muestra">
+              <img class="muestras-img" src="" alt="imagen muestra">
             </section>
 
           </div>
@@ -334,11 +412,70 @@
                   Órgano
                 </label>
                 <select name="organo" class="form-select modal-cassette__control" id="organoCassette" required>
-                  <option value="" selected disabled>Selecciona un órgano</option>
-                  <option value="pulmon">Pulmón</option>
-                  <option value="rinon">Riñón</option>
-                  <option value="bazo">Bazo</option>
-                  <option value="higado">Hígado</option>
+
+                  <option disabled selected>Seleccionar un Órgano</option>
+
+                  <optgroup label="Sistema Nervioso">
+                    <option value="Encefalo">Encéfalo</option>
+                    <option value="Medula Espinal">Médula Espinal</option>
+                    <option value="Nervio">Nervio</option>
+                    <option value="Ganglio Nervios">Ganglio Nervios</option>
+                  </optgroup>
+
+                  <optgroup label="Tegumento">
+                    <option value="Piel">Piel</option>
+                    <option value="Una">Uña</option>
+                    <option value="Pelo">Pelo</option>
+                  </optgroup>
+
+                  <optgroup label="Cardiovascular">
+                    <option value="Corazon">Corazón</option>
+                    <option value="Venas">Venas</option>
+                    <option value="Arteria">Arteria</option>
+                  </optgroup>
+
+                  <optgroup label="Linfático">
+                    <option value="Ganglio Linfatico">Ganglio Linfático</option>
+                    <option value="Timo">Timo</option>
+                    <option value="Bazo">Bazo</option>
+                  </optgroup>
+
+                  <optgroup label="Sistema Digestivo">
+                    <option value="Lengua">Lengua</option>
+                    <option value="Esofago">Esófago</option>
+                    <option value="Estomago">Estómago</option>
+                    <option value="Intestino Delgado">Intestino Delgado</option>
+                    <option value="Intestino Grueso">Intestino Grueso</option>
+                    <option value="Diente">Diente</option>
+                    <option value="Glandula Salivar">Glándula Salivar</option>
+                    <option value="Pancrea">Páncrea</option>
+                    <option value="Higado">Hígado</option>
+                  </optgroup>
+
+                  <optgroup label="Aparato Excretor">
+                    <option value="Rinon">Riñón</option>
+                    <option value="Vejiga">Vejiga</option>
+                  </optgroup>
+
+                  <optgroup label="Respiratorio">
+                    <option value="Tranquea">Tránquea</option>
+                    <option value="Bronquios">Bronquios</option>
+                    <option value="Tejido Respiratorio">Tejido Respiratorio</option>
+                  </optgroup>
+
+                  <optgroup label="Endocrino">
+                    <option value="Tiroides">Tiroides</option>
+                    <option value="Parotidas">Parótidas</option>
+                    <option value="Suprarrenales">Suprarrenales</option>
+                    <option value="Ovario">Ovario</option>
+                    <option value="Testiculo">Testículo</option>
+                  </optgroup>
+
+                  <optgroup label="Locomotor">
+                    <option value="Hueso">Hueso</option>
+                    <option value="Musculo Esqueletico">Musculo Esquelético</option>
+                  </optgroup>
+
                 </select>
               </div>
             </div>

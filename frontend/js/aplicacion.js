@@ -473,6 +473,11 @@ const listaImgs = document.getElementById("listaImgs");
 const bigImage = document.getElementById("bigImage");
 const botonEliminarImg = document.getElementById("botonEliminarImg");
 
+const btnCloseQR = document.getElementById("btnCloseQR");
+const containerQR = document.getElementById("containerQR");
+const btnQR = document.getElementById("btnQR");
+const imgQR = document.getElementById("imgQR");
+
 let arrayCassetes = [];
 let arrayMuestras = [];
 let arrayImgs = [];
@@ -481,7 +486,7 @@ let muestraActiva = null;
 let imgActiva = null;
 
 const checkLogin = () => {
-  if (!sessionStorage.getItem("id_tec")) {
+  if (!sessionStorage.getItem("id_tec") || !getCookieByName("tokenCookie")) {
     window.location = "./../index.html";
   }
 }
@@ -879,8 +884,24 @@ const eliminarImg = async () => {
   showAllImgs();
 }
 
-// filtro de cassetes
+// gestion del qr
+const closeQR = () => {
+  containerQR.classList.add("d-none");
+}
 
+const showQR = async () => {
+  if (casseteActivo) {
+    containerQR.classList.remove("d-none");
+    const casQR = arrayCassetes.find(cassete => cassete.id_cas == casseteActivo.id_cas);
+    console.log(casQR);
+
+    const bytes = new Uint8Array(casQR.qr_cassete.data);
+    const binary = bytes.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
+    const base64 = btoa(binary);
+
+    imgQR.src = "data:image/png;base64," + base64;
+  }
+}
 
 
 document.addEventListener("DOMContentLoaded", showCassetes);
@@ -900,6 +921,9 @@ botonEliminarMuestra.addEventListener("click", confirmationDeleteMues);
 botonEliminarImg.addEventListener("click", eliminarImg);
 btncancelarDeleteCas.addEventListener("click", cancelarDeleteCas);
 btncancelarDeleteMues.addEventListener("click", cancelarDeleteMues);
+
+btnCloseQR.addEventListener("click", closeQR);
+btnQR.addEventListener("click", showQR);
 
 formImg.addEventListener("submit", sendImage);
 listaImgs.addEventListener("click", zoomImage);
