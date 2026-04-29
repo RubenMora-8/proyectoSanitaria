@@ -775,7 +775,7 @@ const deleteMues = async () => {
 
 // gestionar imágenes
 
-const sendImage = async () => {
+const sendImage = async (event) => {
   event.preventDefault();
   const formData = new FormData(formImg);
   const formJSON = Object.fromEntries(formData.entries());
