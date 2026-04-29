@@ -163,3 +163,8 @@ if (formularioRegistro && passwordRegistro) {
         }
     });
 }
+const infoMessage = document.getElementById("infoMessage");
+
+const showMessage = (message) => {
+    infoMessage.textContent = message;
+}

@@ -13,7 +13,7 @@
 
 .barra-herramientas__entrada[type="date"] {
     color: var(--azul-claro);
-    text-transform: uppercase; 
+    text-transform: uppercase;
     font-size: 0.85rem;
     border: 1px solid var(--azul-principal);
     padding: 6px 10px;
@@ -51,7 +51,8 @@
 }
 
 .contenedor-casetes__listado {
-    max-height: 400px; /* Ajusta según lo largo que quieras el listado */
+    max-height: 400px;
+    /* Ajusta según lo largo que quieras el listado */
     overflow-y: auto;
 }
 
@@ -120,7 +121,8 @@
 }
 
 /* Iconos y botones */
-.btn-icono, .btn-tabla {
+.btn-icono,
+.btn-tabla {
     background: none;
     border: none;
     color: var(--azul-principal);
@@ -129,7 +131,8 @@
     font-size: 1.1rem;
 }
 
-.btn-icono:hover, .btn-tabla:hover {
+.btn-icono:hover,
+.btn-tabla:hover {
     transform: scale(1.1);
     color: var(--texto-suave);
 }
@@ -153,14 +156,16 @@
 .detalle-item__etiqueta {
     color: var(--azul-principal);
     font-weight: 700;
-    text-transform: uppercase; /* Pone DESCRIPCIÓN, ÓRGANO, etc en mayúsculas */
+    text-transform: uppercase;
+    /* Pone DESCRIPCIÓN, ÓRGANO, etc en mayúsculas */
     font-size: 0.9rem;
     margin-bottom: 3px;
     letter-spacing: 0.5px;
 }
 
 .detalle-item__valor {
-    color: var(--azul-claro); /* El azul clarito de tus textos en la imagen */
+    color: var(--azul-claro);
+    /* El azul clarito de tus textos en la imagen */
     font-size: 0.95rem;
     margin-bottom: 0;
 }
@@ -170,7 +175,8 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    border-bottom: 1px solid #f0f4f8; /* Línea sutil debajo de Órgano/Fecha */
+    border-bottom: 1px solid #f0f4f8;
+    /* Línea sutil debajo de Órgano/Fecha */
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
@@ -188,6 +194,47 @@
     margin-left: 8px;
     color: var(--azul-principal);
     font-size: 1.2rem;
+}
+
+.contenedor-muestras {
+    display: flex;
+    gap: 0;
+    padding: 8px 10px;
+    background-color: #f8fafc;
+    border-top: 1px solid #edf2f7;
+}
+
+.contenedor-muestras__acciones .btn-icono {
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.contenedor-muestras__mensaje {
+    color: #c1121f;
+    font-size: 0.72rem;
+    line-height: 1.2;
+    background-color: transparent;
+    padding: 0.5rem;
+    text-align: center;
+    margin: 0;
+}
+
+.contenedor-muestras__listado {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--azul-principal);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 0.35rem 0.5rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.tabla-app__fila--muestra td {
+    background-color: #f8fbfd;
 }
 
 /* Modal nuevo cassette */
@@ -349,3 +396,101 @@ body.modal-cassette-force-close .modal-backdrop {
     background-color: #e8f1f6 !important;
 }
 
+.btn_details {
+    border: none;
+    background: none;
+}
+
+.btn_details i {
+    color: var(--azul-principal);
+}
+
+.btn_details i:hover {
+    color: rgb(0, 93, 180);
+}
+
+.modalNuevaMuestra {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    background-color: #00000054;
+    height: 100%;
+    width: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.modalNuevaMuestra__interior {
+    background-color: #F4F7F9;
+    border-radius: 30px;
+    width: 500px;
+    height: 600px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.btn-close-muestra {
+    margin-left: 160px;
+}
+
+.modal-muestra {
+    background-color: rgba(0, 0, 0, 0.281);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    padding-top: 50px;
+}
+
+.tarjeta-modal-muestra {
+    max-width: 1000px;
+    width: 100%;
+    max-height: 560px;
+    overflow-y: scroll;
+}
+
+.section-muestras-info {
+    width: 40%;
+}
+
+.section-muestras-img {
+    width: 55%;
+}
+
+.muestras-img {
+    width: 100%;
+}
+
+.muestra-img-list {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.muestra-img-list img {
+    width: 100px;
+}
+
+.modal-confirmation-delete {
+    width: 300px;
+    height: 200px;
+    background-color: #F4F7F9;
+    padding: 30px;
+    border-radius: 10px;
+    top: 30%;
+}
+
+.dark-background {
+    background-color: rgba(0, 0, 0, 0.288);
+}
+
+.container-confirmation {
+    z-index: 60;
+}
+
+.hidden {
+    display: none;
+}

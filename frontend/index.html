@@ -11,13 +11,13 @@
     <main class="tarjeta-acceso">
         <section id="seccion-login" class="tarjeta-acceso__contenido">
             <h1 class="tarjeta-acceso__titulo">Login</h1>
-            <form class="formulario-acceso">
+            <form class="formulario-acceso" id="formularioLogin">
                 <div class="formulario-acceso__campo">
-                    <input type="email" class="formulario-acceso__entrada" placeholder="Correo" required>
+                    <input name="email" type="email" class="formulario-acceso__entrada" placeholder="Correo" required>
                 </div>
                 <div class="formulario-acceso__campo">
                     <div class="formulario-acceso__contenedor-password">
-                        <input type="password" class="formulario-acceso__entrada" placeholder="Contraseña" required>
+                        <input name="password" type="password" class="formulario-acceso__entrada" placeholder="Contraseña" required>
                         <button type="button" class="formulario-acceso__toggle-password" aria-label="Mostrar contraseña" data-password-target="self">
                             <span class="formulario-acceso__icono-ojo" aria-hidden="true">👁</span>
                         </button>
@@ -25,17 +25,20 @@
                 </div>
 
                 <button type="submit" class="formulario-acceso__boton-enviar">Login</button>
+                <p class="infoMessage" id="infoMessage"></p>
             </form>
+
         </section>
 
         <section id="seccion-recuperar" class="tarjeta-acceso__contenido tarjeta-acceso__contenido--oculto">
             <h1 class="tarjeta-acceso__titulo">Solicitar Contraseña</h1>
-            <form class="formulario-acceso">
+            <form class="formulario-acceso" id="formRecovery">
                 <div class="formulario-acceso__campo">
-                    <input type="email" class="formulario-acceso__entrada" placeholder="Correo" required>
+                    <input name="email" type="email" class="formulario-acceso__entrada" placeholder="Correo" required>
                 </div>
                 <button type="submit" class="formulario-acceso__boton-enviar">Solicitar Contraseña</button>
             </form>
+            <p class="infoMessage" id="infoMessage"></p>
         </section>
 
         <footer class="formulario-acceso__pie">
@@ -50,5 +53,6 @@
     </main>
 
     <script src="./js/script.js"></script>
+    <script src="./js/login.js"></script>
 </body>
 </html>
