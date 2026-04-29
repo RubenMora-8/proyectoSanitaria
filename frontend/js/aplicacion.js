@@ -444,6 +444,7 @@
 const formularioCassette = document.getElementById("formNuevoCassette");
 const formNuevaMuestra = document.getElementById("formNuevaMuestra");
 const tablaCassettesBody = document.getElementById("tablaCassettesBody");
+const tablaMuestrasBody = document.getElementById("tablaMuestrasBody");
 const detalleDescripcion = document.getElementById("detalleDescripcion");
 const detalleOrgano = document.getElementById("detalleOrgano");
 const detalleFecha = document.getElementById("detalleFecha");
@@ -556,6 +557,7 @@ const casseteDetails = (event) => {
     detalleFecha.textContent = casseteActivo.fecha.slice(0, casseteActivo.fecha.indexOf("T"));
     detalleCaracteristicas.textContent = casseteActivo.caracteristicas;
     detalleObservaciones.textContent = casseteActivo.observaciones;
+    showMuestras();
   }
 }
 
@@ -597,10 +599,58 @@ const createMuestraJson = async (muestraJson) => {
   if (resJSON.error) {
     showMessage(resJSON.error);
   }
-  console.log(resJSON);
+  closeModalMuestra();
+  formNuevaMuestra.reset();
+  showMuestras();
 }
 
-document.addEventListener("DOMContentLoaded", showCassetes)
+const showMuestras = async () => {
+  const token = getCookieByName("tokenCookie");
+  const res = await fetch("http://www.localhost:3000/api/muestras/" + casseteActivo.id_cas, {
+    headers: {
+      "authorization": "Bearer " + token
+    }
+  });
+  const resJSON = await res.json();
+
+  console.log(resJSON);
+  tableMuestras(resJSON);
+}
+
+const tableMuestras = (muestrasJson) => {
+  tablaMuestrasBody.innerHTML = "";
+
+  const fragment = document.createDocumentFragment();
+  muestrasJson.forEach(mues => {
+    const fila = document.createElement("tr");
+
+    const colFch = document.createElement("td");
+    colFch.textContent = mues.fecha.slice(0, mues.fecha.indexOf("T"))
+    fila.appendChild(colFch);
+
+    const colDesc = document.createElement("td");
+    colDesc.textContent = mues.descripcion;
+    fila.appendChild(colDesc);
+
+    const colTin = document.createElement("td");
+    colTin.textContent = mues.tincion;
+    fila.appendChild(colTin);
+
+    const colButton = document.createElement("td");
+    const btn = document.createElement("button");
+    btn.value = mues.id_muestra;
+    btn.innerHTML = '<i class="fa-solid fa-file-circle-question"></i>';
+    btn.className = "btn_details";
+    colButton.appendChild(btn);
+
+    fila.appendChild(colButton);
+    fragment.appendChild(fila);
+  });
+
+  tablaMuestrasBody.appendChild(fragment);
+}
+
+document.addEventListener("DOMContentLoaded", showCassetes);
 formularioCassette.addEventListener("submit", createCassete);
 modalNuevaMuestra.addEventListener("submit", createMuestra);
 tablaCassettesBody.addEventListener("click", casseteDetails);
