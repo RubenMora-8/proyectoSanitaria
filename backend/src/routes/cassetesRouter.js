@@ -12,6 +12,7 @@ const authMiddleware = require("../middleware/authMiddleware.js");
 casseteRouter.get("/", authMiddleware.checkToken, casseteController.getAllCassetes);
 casseteRouter.post("/", authMiddleware.checkToken, casseteController.createCassete);
 casseteRouter.delete("/:id_cas", authMiddleware.checkToken, casseteController.deleteCassete);
+casseteRouter.put("/:id_cas", authMiddleware.checkToken, casseteController.updateCassete);
 
 
 module.exports = casseteRouter;

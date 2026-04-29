@@ -106,9 +106,51 @@ const deleteCassete = async (req, res) => {
     }
 }
 
+const updateCassete = async (req, res) => {
+    const id_cas = req.params.id_cas;
+    const cassete = req.body;
+
+    if (!id_cas) {
+        return res.status(400).json({
+            error: "Falta el id del cassete"
+        });
+    }
+
+    try {
+        const existingCassete = await casseteService.getCasseteById(id_cas);
+        if (!existingCassete) {
+            return res.status(404).json({
+                error: "Cassete no encontrado"
+            });
+        }
+        const datosActualizados = {};
+        if (cassete.fecha) datosActualizados.fecha = cassete.fecha;
+        if (cassete.observaciones) datosActualizados.observaciones = cassete.observaciones;
+        if (cassete.descripcion) datosActualizados.descripcion = cassete.descripcion;
+        if (cassete.caracteristicas) datosActualizados.caracteristicas = cassete.caracteristicas;
+        if (cassete.organo) datosActualizados.organo = cassete.organo;
+        if (cassete.id_tec) datosActualizados.id_tec = cassete.id_tec;
+        
+        
+        const updatedCassete = await casseteService.updateCassete(id_cas, datosActualizados);
+
+        res.status(200).json({
+            message: "Cassete actualizado correctamente",
+            data: updatedCassete
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: "Error en la base de datos",
+            errores: [error.message]
+        });
+    }
+};
+
 module.exports = {
     getAllCassetes,
     getCasseteById,
     createCassete,
+    updateCassete,
     deleteCassete
 }

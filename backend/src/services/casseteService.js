@@ -29,10 +29,16 @@ const deleteCassete = async (id_cassete) => {
     return createdCassete;
 }
 
+const updateCassete = async (id_cas, datos) => {
+    await casseteModel.update(datos, { where: { id_cas: id_cas } });
+    return await getCasseteById(id_cas);
+};
+
 module.exports = {
     getAllCassetes,
     getCassetesByTecnico,
     getCasseteById,
     createCassete,
+    updateCassete,
     deleteCassete
 }
