@@ -18,6 +18,7 @@ const sendRegisterJson = async (userJson) => {
 
     console.log(resJSON);
     showMessage(resJSON.message);
+    formularioRegistro.reset();
 }
 
 

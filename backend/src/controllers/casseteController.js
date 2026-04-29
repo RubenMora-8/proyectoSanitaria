@@ -4,15 +4,8 @@ const qrService = require("../services/qrService.js");
 const getAllCassetes = async (req, res) => {
     try {
         let cassetes;
-        
-        if (req.user.tipo === 1) {
-            cassetes = await casseteService.getAllCassetes();
-        } 
-        else {
-            const idTec = req.user.id;
-            cassetes = await casseteService.getCassetesByTecnico(idTec);
-        }
-        
+        cassetes = await casseteService.getAllCassetes();
+
         res.status(200).json(cassetes);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -23,17 +16,17 @@ const getCasseteById = async (req, res) => {
     try {
         const id_cas = req.params.id_cas;
         const cassete = await casseteService.getCasseteById(id_cas);
-        
+
         if (!cassete) {
             return res.status(404).json({ error: "Cassete no encontrado" });
         }
-        
+
         if (req.user.tipo !== 1 && cassete.id_tec !== req.user.id) {
-            return res.status(403).json({ 
-                error: "No tienes permiso para ver este cassete" 
+            return res.status(403).json({
+                error: "No tienes permiso para ver este cassete"
             });
         }
-        
+
         res.status(200).json(cassete);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -55,9 +48,9 @@ const createCassete = async (req, res) => {
     try {
         const textoQR = `CASSETE-${Date.now()}`;
         const imagenQR = await qrService.generarQRBuffer(textoQR);
-        
+
         cassete.qr_cassete = imagenQR;
-        
+
         const createdCassete = await casseteService.createCassete(cassete);
 
         res.status(200).json({
@@ -130,8 +123,8 @@ const updateCassete = async (req, res) => {
         if (cassete.caracteristicas) datosActualizados.caracteristicas = cassete.caracteristicas;
         if (cassete.organo) datosActualizados.organo = cassete.organo;
         if (cassete.id_tec) datosActualizados.id_tec = cassete.id_tec;
-        
-        
+
+
         const updatedCassete = await casseteService.updateCassete(id_cas, datosActualizados);
 
         res.status(200).json({
