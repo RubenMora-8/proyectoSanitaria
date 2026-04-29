@@ -88,15 +88,17 @@
         </div>
 
         <!-- modales de confirmacion de borrado-->
-         <!-- borrado de cassete -->
-        <div id="confirmationDeleteCasmodal" class="position-fixed z-3 d-flex justify-content-center w-100 h-100 dark-background d-none container-confirmation">
+        <!-- borrado de cassete -->
+        <div id="confirmationDeleteCasmodal"
+          class="position-fixed z-3 d-flex justify-content-center w-100 h-100 dark-background d-none container-confirmation">
 
           <div class="modal-body modal-confirmation-delete">
             <p class="modal-cassette__texto mb-4" id="textoEliminarCassette">
               ¿Quieres eliminar este cassette?
             </p>
             <div class="d-flex gap-3">
-              <button type="button" id="btncancelarDeleteCas" class="btn w-100 modal-cassette__boton modal-cassette__boton--secundario">
+              <button type="button" id="btncancelarDeleteCas"
+                class="btn w-100 modal-cassette__boton modal-cassette__boton--secundario">
                 Cancelar
               </button>
               <button type="button" class="btn w-100 modal-cassette__boton modal-cassette__boton--peligro"
@@ -108,14 +110,16 @@
         </div>
 
         <!-- borrado de muestra -->
-        <div id="confirmationDeleteMuesmodal" class="position-fixed d-flex justify-content-center w-100 h-100 dark-background d-none container-confirmation">
+        <div id="confirmationDeleteMuesmodal"
+          class="position-fixed d-flex justify-content-center w-100 h-100 dark-background d-none container-confirmation">
 
           <div class="modal-body modal-confirmation-delete">
             <p class="modal-cassette__texto mb-4" id="textoEliminarCassette">
               ¿Quieres eliminar esta muestra?
             </p>
             <div class="d-flex gap-3">
-              <button type="button" id="btncancelarDeleteMues" class="btn w-100 modal-cassette__boton modal-cassette__boton--secundario">
+              <button type="button" id="btncancelarDeleteMues"
+                class="btn w-100 modal-cassette__boton modal-cassette__boton--secundario">
                 Cancelar
               </button>
               <button type="button" class="btn w-100 modal-cassette__boton modal-cassette__boton--peligro"
@@ -236,9 +240,20 @@
               </section>
             </div>
             <hr class="detalle-divisor" />
+
+            <!-- subida de imágenes -->
+             
+            <form class="p-3" id="formImg">
+              <div>
+                <label class="form-label modal-cassette__label" for="image-muestra">Subir imagen</label>
+                <br>
+                <input type="file" name="file" id="image-muestra">
+              </div>
+              <input type="submit" value="Subir">
+            </form>
+
             <section class="muestra-img-list p-3 flex-wrap gap-3">
               <img class="muestras-img" src="./../assets/images/muestraPrueba.png" alt="imagen muestra">
-              <i class="fa-solid fa-circle-plus"></i>
             </section>
 
           </div>

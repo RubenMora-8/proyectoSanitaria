@@ -468,6 +468,7 @@ const botonEliminarMuestra = document.getElementById("botonEliminarMuestra");
 const btncancelarDeleteCas = document.getElementById("btncancelarDeleteCas");
 const confirmarDeleteMuestra = document.getElementById("confirmarDeleteMuestra");
 const btncancelarDeleteMues = document.getElementById("btncancelarDeleteMues");
+const formImg = document.getElementById("formImg");
 
 let arrayCassetes = [];
 let arrayMuestras = [];
@@ -591,7 +592,6 @@ const closeModalMuestra = () => {
 
 
 const showDetailsMuestra = () => {
-  console.log(muestraActiva);
   detailsMuestra.classList.remove("hidden");
 }
 
@@ -640,7 +640,6 @@ const showMuestras = async () => {
   const resJSON = await res.json();
 
   arrayMuestras = [...resJSON];
-  console.log(arrayMuestras);
   tableMuestras(resJSON);
 
 }
@@ -768,6 +767,38 @@ const deleteMues = async () => {
   closeMuestraDetails();
 }
 
+// enviar imágenes
+
+const sendImage = async () => {
+  event.preventDefault();
+  const formData = new FormData(formImg);
+  const formJSON = Object.fromEntries(formData.entries());
+
+  console.log(formData);
+  sendImageJson(formData);
+}
+
+const sendImageJson = async (formdataImg) => {
+  const token = getCookieByName("tokenCookie");
+  const res = await fetch("http://www.localhost:3000/api/imgs/muestra/" + muestraActiva.id_muestra, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+      "authorization": "Bearer " + token
+    },
+    body: JSON.stringify(formdataImg)
+  });
+  const resJSON = await res.json();
+
+  if (resJSON.error) {
+    console.log(resJSON);
+  }
+}
+
+// filtro de cassetes
+
+
+
 document.addEventListener("DOMContentLoaded", showCassetes);
 formularioCassette.addEventListener("submit", createCassete);
 modalNuevaMuestra.addEventListener("submit", createMuestra);
@@ -783,3 +814,4 @@ confirmarDeleteMuestra.addEventListener("click", deleteMues);
 botonEliminarMuestra.addEventListener("click", confirmationDeleteMues);
 btncancelarDeleteCas.addEventListener("click", cancelarDeleteCas);
 btncancelarDeleteMues.addEventListener("click", cancelarDeleteMues);
+formImg.addEventListener("submit", sendImage);
