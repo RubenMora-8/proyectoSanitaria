@@ -769,29 +769,46 @@ const deleteMues = async () => {
 
 // enviar imágenes
 
-const sendImage = async () => {
+const sendImage = async (event) => {
   event.preventDefault();
-  const formData = new FormData(formImg);
-  const formJSON = Object.fromEntries(formData.entries());
-
-  console.log(formData);
-  sendImageJson(formData);
+  
+  const inputFile = document.getElementById("image-muestra");
+  const archivo = inputFile.files[0];
+  
+  const tiposPermitidos = ['image/jpeg', 'image/jpg', 'image/png'];
+  if (!tiposPermitidos.includes(archivo.type)) {
+    console.log("Formato no permitido.");
+    return;
+  }
+  
+  const formData = new FormData();
+  formData.append("imagen", archivo);
+  
+  await sendImageJson(formData);
 }
 
 const sendImageJson = async (formdataImg) => {
   const token = getCookieByName("tokenCookie");
-  const res = await fetch("http://www.localhost:3000/api/imgs/muestra/" + muestraActiva.id_muestra, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-      "authorization": "Bearer " + token
-    },
-    body: JSON.stringify(formdataImg)
-  });
-  const resJSON = await res.json();
-
-  if (resJSON.error) {
-    console.log(resJSON);
+  
+  try {
+    const res = await fetch("http://localhost:3000/api/imgs/muestra/" + muestraActiva.id_muestra, {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer " + token
+      },
+      body: formdataImg
+    });
+    
+    const resJSON = await res.json();
+    
+    if (res.ok) {
+      document.getElementById("image-muestra").value = "";
+    } else {
+      console.log("Error:", resJSON);
+    }
+  } catch (error) {
+    console.error("Error de conexión:", error);
+    alert("Error al conectar con el servidor");
   }
 }
 
