@@ -497,7 +497,9 @@ body.modal-cassette-force-close .modal-backdrop {
     background-color: none;
 
 }
-
+.containerQR{
+    z-index: 100;
+}
 .btnCloseQR i:hover {
     color: rgb(0, 93, 180);
 }

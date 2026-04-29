@@ -116,7 +116,7 @@
 
     <!-- contenedor de QR -->
 
-    <div id="containerQR" class="d-none position-fixed top-0 m-0 dark-background d-flex justify-content-center flex-column align-items-center w-100 h-100 z-3">
+    <div id="containerQR" class="containerQR d-none position-fixed top-0 m-0 dark-background d-flex justify-content-center flex-column align-items-center w-100 h-100">
       <button id="btnCloseQR" class="btnCloseQR">
         <i class="fa-solid fa-xmark"></i>
       </button>
@@ -276,7 +276,7 @@
 
             <div>
               <div class="contenedor-detalle__acciones">
-                <button class="btn-icono" title="Código QR">
+                <button class="btn-icono" title="Código QR" id="btnQRMuestra">
                   <i class="fas fa-qrcode"></i>
                 </button>
                 <button class="btn-icono" title="Eliminar" type="button" id="botonEliminarMuestra">

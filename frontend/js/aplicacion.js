@@ -476,6 +476,7 @@ const botonEliminarImg = document.getElementById("botonEliminarImg");
 const btnCloseQR = document.getElementById("btnCloseQR");
 const containerQR = document.getElementById("containerQR");
 const btnQR = document.getElementById("btnQR");
+const btnQRMuestra = document.getElementById("btnQRMuestra");
 const imgQR = document.getElementById("imgQR");
 
 let arrayCassetes = [];
@@ -893,13 +894,29 @@ const showQR = async () => {
   if (casseteActivo) {
     containerQR.classList.remove("d-none");
     const casQR = arrayCassetes.find(cassete => cassete.id_cas == casseteActivo.id_cas);
-    console.log(casQR);
 
     const bytes = new Uint8Array(casQR.qr_cassete.data);
     const binary = bytes.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
     const base64 = btoa(binary);
 
     imgQR.src = "data:image/png;base64," + base64;
+    console.log(imgQR.src);
+  }
+}
+
+
+const showQRMuestra = async () => {
+  if (muestraActiva) {
+    containerQR.classList.remove("d-none");
+    const muesQR = arrayMuestras.find(muestra => muestra.id_muestra == muestraActiva.id_muestra);
+    
+
+    const bytes = new Uint8Array(muesQR.qr_muestra.data);
+    const binary = bytes.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
+    const base64 = btoa(binary);
+
+    imgQR.src = "data:image/png;base64," + base64;
+    console.log(imgQR.src);
   }
 }
 
@@ -924,6 +941,7 @@ btncancelarDeleteMues.addEventListener("click", cancelarDeleteMues);
 
 btnCloseQR.addEventListener("click", closeQR);
 btnQR.addEventListener("click", showQR);
+btnQRMuestra.addEventListener("click", showQRMuestra);
 
 formImg.addEventListener("submit", sendImage);
 listaImgs.addEventListener("click", zoomImage);
