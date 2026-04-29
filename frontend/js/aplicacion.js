@@ -422,8 +422,8 @@
     }));
     elementos.botonNuevoCassette.addEventListener("click", abrirModalCrearCassette);
     elementos.botonEditarCassette.addEventListener("click", abrirModalEditarCassette);
-    elementos.botonEliminarCassette.addEventListener("click", abrirModalEliminarCassette);
-    elementos.botonConfirmarEliminarCassette.addEventListener("click", eliminarCassetteSeleccionado);
+    // elementos.botonEliminarCassette.addEventListener("click", abrirModalEliminarCassette);
+    // elementos.botonConfirmarEliminarCassette.addEventListener("click", eliminarCassetteSeleccionado);
     // elementos.botonCrearMuestra.addEventListener("click", crearMuestraDesdeSeleccion);
   }
 
@@ -460,8 +460,14 @@ const detalleFechaMuestra = document.getElementById("detalleFechaMuestra");
 const detalleCaracteristicasMuestra = document.getElementById("detalleCaracteristicasMuestra");
 const btnCloseDetailsMuestra = document.getElementById("btnCloseDetailsMuestra");
 const detailsMuestra = document.getElementById("detailsMuestra");
-
-
+const botonEliminarCassette = document.getElementById("botonEliminarCassette");
+const confirmationDeleteCasmodal = document.getElementById("confirmationDeleteCasmodal");
+const confirmarEliminarCassette = document.getElementById("confirmarEliminarCassette");
+const confirmationDeleteMuesmodal = document.getElementById("confirmationDeleteMuesmodal");
+const botonEliminarMuestra = document.getElementById("botonEliminarMuestra");
+const btncancelarDeleteCas = document.getElementById("btncancelarDeleteCas");
+const confirmarDeleteMuestra = document.getElementById("confirmarDeleteMuestra");
+const btncancelarDeleteMues = document.getElementById("btncancelarDeleteMues");
 
 let arrayCassetes = [];
 let arrayMuestras = [];
@@ -503,7 +509,7 @@ const createCasseteJson = async (casJson) => {
   const resJSON = await res.json();
 
   if (resJSON.error) {
-    showMessage(resJSON.error);
+    console.log(resJSON);
   }
   showCassetes();
 
@@ -684,7 +690,83 @@ const muestraDetails = () => {
   }
 }
 
+// eliminación de elementos
 
+const confirmationDeleteMues = () => {
+  if (muestraActiva) {
+    confirmationDeleteMuesmodal.classList.remove("d-none");
+  }
+}
+
+
+const confirmationDeleteCas = () => {
+  if (casseteActivo) {
+    confirmationDeleteCasmodal.classList.remove("d-none");
+  }
+}
+
+const cancelarDeleteCas = () => {
+  confirmationDeleteCasmodal.classList.add("d-none");
+}
+
+const cancelarDeleteMues = () => {
+  confirmationDeleteMuesmodal.classList.add("d-none");
+}
+
+const hideconfirmationDeleteCas = () => {
+  confirmationDeleteCasmodal.classList.add("d-none");
+}
+
+const limpiarDetailsCassete = () => {
+  detalleDescripcion.textContent = "";
+  detalleOrgano.textContent = "";
+  detalleFecha.textContent = "";
+  detalleCaracteristicas.textContent = "";
+  detalleObservaciones.textContent = "";
+}
+
+const deleteCassete = async () => {
+  const token = getCookieByName("tokenCookie");
+  const res = await fetch("http://www.localhost:3000/api/cassetes/" + casseteActivo.id_cas, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": "Bearer " + token
+    }
+  });
+  const resJSON = await res.json();
+
+  if (resJSON.error) {
+    showMessage(resJSON.error);
+  }
+
+  showCassetes();
+  showMuestras();
+  hideconfirmationDeleteCas();
+  limpiarDetailsCassete();
+}
+
+const deleteMues = async () => {
+  const token = getCookieByName("tokenCookie");
+  const res = await fetch("http://www.localhost:3000/api/muestras/" + muestraActiva.id_muestra, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": "Bearer " + token
+    }
+  });
+  const resJSON = await res.json();
+
+  if (resJSON.error) {
+    showMessage(resJSON.error);
+  }
+
+  showCassetes();
+  showMuestras();
+  hideconfirmationDeleteCas();
+  cancelarDeleteMues();
+  closeMuestraDetails();
+}
 
 document.addEventListener("DOMContentLoaded", showCassetes);
 formularioCassette.addEventListener("submit", createCassete);
@@ -694,3 +776,10 @@ tablaMuestrasBody.addEventListener("click", muestraDetails);
 botonCrearMuestra.addEventListener("click", showModalMuestra);
 btnCloseMuestra.addEventListener("click", closeModalMuestra);
 btnCloseDetailsMuestra.addEventListener("click", closeMuestraDetails);
+botonEliminarCassette.addEventListener("click", confirmationDeleteCas);
+confirmarEliminarCassette.addEventListener("click", deleteCassete);
+confirmarDeleteMuestra.addEventListener("click", deleteMues);
+
+botonEliminarMuestra.addEventListener("click", confirmationDeleteMues);
+btncancelarDeleteCas.addEventListener("click", cancelarDeleteCas);
+btncancelarDeleteMues.addEventListener("click", cancelarDeleteMues);
