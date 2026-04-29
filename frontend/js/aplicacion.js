@@ -454,10 +454,19 @@ const botonCrearMuestra = document.getElementById("botonCrearMuestra");
 const modalNuevaMuestra = document.getElementById("modalNuevaMuestra");
 const btnCloseMuestra = document.getElementById("btnCloseMuestra");
 const mensajeMuestra = document.getElementById("mensajeMuestra");
+const detalleDescripcionMuestra = document.getElementById("detalleDescripcionMuestra");
+const detalleOrganoMuestra = document.getElementById("detalleOrganoMuestra");
+const detalleFechaMuestra = document.getElementById("detalleFechaMuestra");
+const detalleCaracteristicasMuestra = document.getElementById("detalleCaracteristicasMuestra");
+const btnCloseDetailsMuestra = document.getElementById("btnCloseDetailsMuestra");
+const detailsMuestra = document.getElementById("detailsMuestra");
+
 
 
 let arrayCassetes = [];
+let arrayMuestras = [];
 let casseteActivo = null;
+let muestraActiva = null;
 
 const createCassete = async (event) => {
   event.preventDefault();
@@ -574,6 +583,17 @@ const closeModalMuestra = () => {
   modalNuevaMuestra.classList.add("hidden");
 }
 
+
+const showDetailsMuestra = () => {
+  console.log(muestraActiva);
+  detailsMuestra.classList.remove("hidden");
+}
+
+const closeMuestraDetails = () => {
+  detailsMuestra.classList.add("hidden");
+}
+
+
 const createMuestra = async () => {
   event.preventDefault();
   const formData = new FormData(formNuevaMuestra);
@@ -613,8 +633,10 @@ const showMuestras = async () => {
   });
   const resJSON = await res.json();
 
-  console.log(resJSON);
+  arrayMuestras = [...resJSON];
+  console.log(arrayMuestras);
   tableMuestras(resJSON);
+
 }
 
 const tableMuestras = (muestrasJson) => {
@@ -650,9 +672,25 @@ const tableMuestras = (muestrasJson) => {
   tablaMuestrasBody.appendChild(fragment);
 }
 
+const muestraDetails = () => {
+  if (event.target.tagName === "I") {
+    muestraActiva = arrayMuestras.find(mues => mues.id_muestra == event.target.parentElement.value);
+    detalleDescripcionMuestra.textContent = muestraActiva.descripcion;
+    detalleOrganoMuestra.textContent = muestraActiva.tincion;
+    detalleFechaMuestra.textContent = muestraActiva.fecha.slice(0, muestraActiva.fecha.indexOf("T"));
+    detalleCaracteristicasMuestra.textContent = muestraActiva.observaciones;
+
+    showDetailsMuestra();
+  }
+}
+
+
+
 document.addEventListener("DOMContentLoaded", showCassetes);
 formularioCassette.addEventListener("submit", createCassete);
 modalNuevaMuestra.addEventListener("submit", createMuestra);
 tablaCassettesBody.addEventListener("click", casseteDetails);
+tablaMuestrasBody.addEventListener("click", muestraDetails);
 botonCrearMuestra.addEventListener("click", showModalMuestra);
 btnCloseMuestra.addEventListener("click", closeModalMuestra);
+btnCloseDetailsMuestra.addEventListener("click", closeMuestraDetails);
